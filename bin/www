@@ -8,6 +8,11 @@ var app = require('../app');
 var debug = require('debug')('Whiteboard:server');
 var http = require('http');
 
+//EASY RTC DEPENDENCIES
+var io = require("socket.io");         // web socket external module
+var easyrtc = require("easyrtc");           // EasyRTC external module
+
+
 /**
  * Get port from environment and store in Express.
  */
@@ -28,6 +33,15 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+//EASY RTC CONFIG
+// Start Socket.io so it attaches itself to Express server
+var socketServer = io.listen(server, {"log level":1});
+
+// Start EasyRTC server
+var rtc = easyrtc.listen(app, socketServer);
+
 
 /**
  * Normalize a port into a number, string, or false.

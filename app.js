@@ -8,23 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-
-
-var http    = require("http");              // http server core module
-var io      = require("socket.io");         // web socket external module
-var easyrtc = require("easyrtc");           // EasyRTC external module
-
-
 var app = express();
-
-// Start Express http server on port 8080
-var webServer = http.createServer(app).listen(8080);
-
-// Start Socket.io so it attaches itself to Express server
-var socketServer = io.listen(webServer, {"log level":1});
-
-// Start EasyRTC server
-var rtc = easyrtc.listen(app, socketServer);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
