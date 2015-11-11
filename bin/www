@@ -42,6 +42,38 @@ var socketServer = io.listen(server, {"log level":1});
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, socketServer);
 
+easyrtc.on("getIceConfig", function(connectionObj, callback){
+
+    http.get("http://api.turnservers.com/json/turn?key=***REMOVED***", function(res){
+
+        var data = '';
+        res.on('data', function (chunk){
+            data += chunk;
+        });
+        res.on('end',function(){
+
+            var tsPacket = JSON.parse(data);
+
+            // TODO: Proper error handling to ensure request succeeded.
+            console.log(tsPacket);
+
+            var iceConfig = [{url:"stun:stun.turnservers.com:3478"}];
+
+            for (var i = 0; i < tsPacket.uris.length; i++) {
+                iceConfig.push({
+                    "url":tsPacket.uris[i],
+                    "username":tsPacket.username,
+                    "credential":tsPacket.password
+                });
+            }
+
+            callback(null, iceConfig);
+        })
+    });
+});
+
+
+
 
 /**
  * Normalize a port into a number, string, or false.
