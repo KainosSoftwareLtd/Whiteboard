@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('Whiteboard:server');
 var http = require('http');
+var request = require("request");
 
 //EASY RTC DEPENDENCIES
 var io = require("socket.io");         // web socket external module
@@ -42,36 +43,31 @@ var socketServer = io.listen(server, {"log level":1});
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, socketServer);
 
-easyrtc.on("getIceConfig", function(connectionObj, callback){
+easyrtc.on("getIceConfig", function(connectionObj, callback) {
 
-    http.get("http://api.turnservers.com/json/turn?key=***REMOVED***", function(res){
+    // This object will take in an array of XirSys STUN and TURN servers
+    var iceConfig = [];
 
-        var data = '';
-        res.on('data', function (chunk){
-            data += chunk;
-        });
-        res.on('end',function(){
-
-            var tsPacket = JSON.parse(data);
-
-            // TODO: Proper error handling to ensure request succeeded.
-            console.log(tsPacket);
-
-            var iceConfig = [{url:"stun:stun.turnservers.com:3478"}];
-
-            for (var i = 0; i < tsPacket.uris.length; i++) {
-                iceConfig.push({
-                    "url":tsPacket.uris[i],
-                    "username":tsPacket.username,
-                    "credential":tsPacket.password
-                });
+    request.post('https://service.xirsys.com/ice', {
+            form: {
+                ident: "***REMOVED***",
+                secret: "***REMOVED***",
+                domain: "***REMOVED***",
+                application: "default",
+                room: "default",
+                secure: 0
+            },
+            json: true
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // body.d.iceServers is where the array of ICE servers lives
+                iceConfig = body.d.iceServers;
+                console.log(iceConfig);
+                callback(null, iceConfig);
             }
-
-            callback(null, iceConfig);
-        })
-    });
+        });
 });
-
 
 
 
