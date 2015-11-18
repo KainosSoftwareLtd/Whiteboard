@@ -7,6 +7,12 @@
 var app = require('../app');
 var debug = require('debug')('Whiteboard:server');
 var http = require('http');
+var request = require("request");
+
+//EASY RTC DEPENDENCIES
+var io = require("socket.io");         // web socket external module
+var easyrtc = require("easyrtc");           // EasyRTC external module
+
 
 /**
  * Get port from environment and store in Express.
@@ -28,6 +34,44 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+//EASY RTC CONFIG
+// Start Socket.io so it attaches itself to Express server
+var socketServer = io.listen(server, {"log level":1});
+
+// Start EasyRTC server
+var rtc = easyrtc.listen(app, socketServer);
+
+
+//REF: http://xirsys.com/easyrtc/
+easyrtc.on("getIceConfig", function(connectionObj, callback) {
+
+    // This object will take in an array of XirSys STUN and TURN servers
+    var iceConfig = [];
+
+    request.post('https://service.xirsys.com/ice', {
+            form: {
+                ident: "***REMOVED***",
+                secret: "***REMOVED***",
+                domain: "***REMOVED***",
+                application: "default",
+                room: "default",
+                secure: 0
+            },
+            json: true
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // body.d.iceServers is where the array of ICE servers lives
+                iceConfig = body.d.iceServers;
+                console.log(iceConfig);
+                callback(null, iceConfig);
+            }
+        });
+});
+
+
 
 /**
  * Normalize a port into a number, string, or false.

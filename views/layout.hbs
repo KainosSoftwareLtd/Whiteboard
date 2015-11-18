@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <script src="/socket.io-client/socket.io.js"></script>
+<head>
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/easyrtc/api/easyrtc.css" />
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <script src="/socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="/easyrtc/api/easyrtc.js"></script>
+    <link rel="stylesheet" type="text/css" href="easyrtc/demos/css/demo_room.css" />
+    <script type="text/javascript" src="/easyrtc/demos/js/demo_multiparty.js"></script>
+</head>
+
+<body onload="appInit()">
     {{{body}}}
-  </body>
+</body>
 </html>
