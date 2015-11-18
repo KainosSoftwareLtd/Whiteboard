@@ -1,19 +1,7 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-  <!--<head>-->
-      <!--&lt;!&ndash;<script src="/socket.io-client/socket.io.js"></script>&ndash;&gt;-->
-    <!--<title>{{title}}</title>-->
-    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
-  <!--</head>-->
-  <!--<body>-->
-    <!--{{{body}}}-->
-  <!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Multiparty Chatroom</title>
+    <title>{{title}}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="/easyrtc/api/easyrtc.css" />
 
@@ -25,20 +13,6 @@
 </head>
 
 <body onload="appInit()">
-<div id="fullpage"  class="boxCommon" style="background-image:url(/easyrtc/demos/images/irongrip.png)">
-    <video id="box0" class="transit boxCommon thumbCommon easyRTCMirror" muted="muted" volume="0" ></video>
-    <video id="box1" class="transit boxCommon thumbCommon" style="visibility:hidden"></video>
-    <video id="box2" class="transit boxCommon thumbCommon" style="visibility:hidden"></video>
-    <video id="box3" class="transit boxCommon thumbCommon" style="visibility:hidden"></video>
-    <div id="textentryBox" onsubmit="sendText()" style="display:none" >
-        <input type="text" id="textentryField"  class="transit boxcommon" /><br>
-        <button id="textentrySubmit" style="float:right;margin-right:1em" onclick="sendText()">Send</button>
-        <button id="textentryCancel" style="float:left;margin-left:1em" onclick="cancelText()">Cancel</button>
-    </div>
-
-    <img id="killButton" class="transit boxCommon" onclick="killActiveBox()" src="/easyrtc/demos/images/button_close.png" style="display:none;z-index:3" alt="close button" />
-    <img id="muteButton" class="transit boxCommon" onclick ="muteActiveBox()" src="/easyrtc/demos/images/button_mute.png" style="display:none;z-index:3" alt="mute button" />
-    <img id="textEntryButton" class="transit boxCommon" onclick ="showTextEntry()" src="/easyrtc/demos/images/textEntry.png" style="z-index:3;display:none" alt="text button" />
-</div>
+    {{{body}}}
 </body>
 </html>
