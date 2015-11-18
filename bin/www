@@ -43,6 +43,8 @@ var socketServer = io.listen(server, {"log level":1});
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, socketServer);
 
+
+//REF: http://xirsys.com/easyrtc/
 easyrtc.on("getIceConfig", function(connectionObj, callback) {
 
     // This object will take in an array of XirSys STUN and TURN servers
