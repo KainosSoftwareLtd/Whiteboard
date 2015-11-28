@@ -1,6 +1,8 @@
 window.onload = function () {
     //var $ = function(id){return document.getElementById(id)};
 
+    var socket = io();
+
     var canvas = this.__canvas = new fabric.Canvas('c', {
         isDrawingMode: true
     });
@@ -10,9 +12,13 @@ window.onload = function () {
     canvas.on('mouse:up', function(options){
         //console.log(JSON.stringify(canvas));
         var x = JSON.stringify(canvas.toDatalessJSON());
-        console.log(x);
-        canvas2.loadFromJSON(x, canvas.renderAll.bind(canvas2));
+        socket.emit('canvas data', x);
+        
 
+    });
+
+    socket.on('canvas data', function(data) {
+        canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
     });
 
 };

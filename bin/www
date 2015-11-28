@@ -44,6 +44,15 @@ var socketServer = io.listen(server, {"log level":1});
 var rtc = easyrtc.listen(app, socketServer);
 
 
+//This is for to send the data to clients
+socketServer.on('connection', function (socket) {
+    socket.on('canvas data', function (data) {
+        socket.broadcast.emit('canvas data', data);
+    });
+});
+
+
+
 //REF: http://xirsys.com/easyrtc/
 easyrtc.on("getIceConfig", function(connectionObj, callback) {
 
