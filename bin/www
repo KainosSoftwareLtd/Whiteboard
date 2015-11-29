@@ -38,7 +38,7 @@ server.on('listening', onListening);
 
 //EASY RTC CONFIG
 // Start Socket.io so it attaches itself to Express server
-var socketServer = io.listen(server, {"log level":1});
+var socketServer = io.listen(server, {"log level":3});
 
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, socketServer);
