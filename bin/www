@@ -38,10 +38,19 @@ server.on('listening', onListening);
 
 //EASY RTC CONFIG
 // Start Socket.io so it attaches itself to Express server
-var socketServer = io.listen(server, {"log level":1});
+var socketServer = io.listen(server, {"log level":3});
 
 // Start EasyRTC server
 var rtc = easyrtc.listen(app, socketServer);
+
+
+//This is for to send the data to clients
+socketServer.on('connection', function (socket) {
+    socket.on('canvas data', function (data) {
+        socket.broadcast.emit('canvas data', data);
+    });
+});
+
 
 
 //REF: http://xirsys.com/easyrtc/
