@@ -677,19 +677,19 @@ function appInit() {
     for(var i = 0; i < numVideoOBJS; i++) {
         prepVideoBox(i);
     }
-    setReshaper('killButton', killButtonReshaper);
-    setReshaper('muteButton', muteButtonReshaper);
-    setReshaper('textentryBox', reshapeTextEntryBox);
-    setReshaper('textentryField', reshapeTextEntryField);
-    setReshaper('textEntryButton', reshapeTextEntryButton);
-
-    updateMuteImage(false);
-    window.onresize = handleWindowResize;
-    handleWindowResize(); //initial call of the top-down layout manager
+    //setReshaper('killButton', killButtonReshaper);
+    //setReshaper('muteButton', muteButtonReshaper);
+    //setReshaper('textentryBox', reshapeTextEntryBox);
+    //setReshaper('textentryField', reshapeTextEntryField);
+    //setReshaper('textEntryButton', reshapeTextEntryButton);
+    //
+    //updateMuteImage(false);
+    //window.onresize = handleWindowResize;
+    //handleWindowResize(); //initial call of the top-down layout manager
 
 
     easyrtc.setRoomOccupantListener(callEverybodyElse);
-    easyrtc.easyApp("easyrtc.multiparty", "box0", ["box1", "box2", "box3"], loginSuccess);
+    easyrtc.easyApp("easyrtc.multiparty", "box0", ["box1", "box2", "box3"], null);
     easyrtc.setPeerListener(messageListener);
     easyrtc.setDisconnectListener( function() {
         easyrtc.showError("LOST-CONNECTION", "Lost connection to signaling server");
@@ -698,11 +698,11 @@ function appInit() {
         console.log("getConnection count="  + easyrtc.getConnectionCount() );
         boxUsed[slot+1] = true;
         if(activeBox == 0 ) { // first connection
-            collapseToThumb();
+            //collapseToThumb();
             document.getElementById('textEntryButton').style.display = 'block';
         }
         document.getElementById(getIdOfBox(slot+1)).style.visibility = "visible";
-        handleWindowResize();
+        //handleWindowResize();
     });
 
 

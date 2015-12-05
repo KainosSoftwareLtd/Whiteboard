@@ -14,8 +14,13 @@ window.onload = function () {
     }
 
     var canvas = this.__canvas = new fabric.Canvas('c', {
-        isDrawingMode: true
+        isDrawingMode: true,
+        width: 1000,
+        height: 1000
     });
+
+    canvas.freeDrawingBrush.width = 10;
+    canvas.freeDrawingBrush.color = '#41a8c7';
 
     canvas.on('mouse:up', function(options){
         //console.log(JSON.stringify(canvas));
