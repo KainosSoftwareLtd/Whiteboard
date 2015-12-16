@@ -2,6 +2,7 @@
 <html ng-app="whiteboard">
 <head>
     <title>{{title}}</title>
+    <base href="/">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <!--<link rel="stylesheet" type="text/css" href="/easyrtc/api/easyrtc.css" />-->
 
@@ -22,20 +23,20 @@
     <!--&lt;!&ndash;<link rel="stylesheet" type="text/css" href="easyrtc/demos/css/demo_room.css" />&ndash;&gt;-->
     <!--<script type="text/javascript" src="/easyrtc/demos/js/demo_multiparty.js"></script>-->
     <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="angular-route/angular-route.js"></script>
 
     <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>-->
     <script type="text/javascript" src="/js/app.js"></script>
-
+    <script type="text/javascript" src="/js/controllers/MainCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/TestCtrl.js"></script>
+    <script type="text/javascript" src="/js/routes.js"></script>
 
 
 </head>
 
-<div ng-controller="MainController">
-    Your name:
-    <input type="text" ng-model="username">
-    <button ng-click='sayHello()'>greet</button>
-    {[{username}]}
+<body ng-app="whiteboard">
+    <div ng-controller="MainController">
+        <div ng-view></div>
 
-    <hr>
-
-</div>
+    </div>
+</body>
