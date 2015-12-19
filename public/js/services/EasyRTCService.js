@@ -22,6 +22,12 @@ angular.module('EasyRTCService', []).factory('EasyRTCService', [function() {
             })
     };
 
+    factory.setClientVideoStream = function(videoId) {
+        easyrtc.setStreamAcceptor(function(callerId, stream){
+            easyrtc.setVideoObjectSrc(videoId, stream);
+        });
+    };
+
     factory.hangUp = function() {
         easyrtc.hangup();
     };

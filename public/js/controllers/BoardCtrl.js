@@ -7,6 +7,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
     var canvas = initCanvas();
 
     EasyRTCService.init('box0', roomId);
+    EasyRTCService.setClientVideoStream('box1')
 
 
     function initSocket(){
