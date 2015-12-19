@@ -28,17 +28,17 @@ angular.module('EasyRTCService', []).factory('EasyRTCService', [function() {
 
     function roomListener(roomName, occupants, isPrimary){
         //do something on connect / disconnect etc
-        console.log(roomName + " " + occupants + " " + isPrimary);
+        console.log('RTC RoomName' + roomName);
     }
 
     function loginSuccess(easyrtcId) {
         //handle this
-        console.log('login succeeded');
+        console.log('RTC login succeeded');
     }
 
     function loginFailure(easyrtcId, error) {
         //handle this
-        console.log('login failed ' + error);
+        console.log('RTC login failed ' + error);
     }
 
     return factory;

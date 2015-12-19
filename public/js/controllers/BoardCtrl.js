@@ -1,9 +1,12 @@
-angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope','EasyRTCService', function($scope, EasyRTCService) {
+angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams', 'EasyRTCService', function($scope, $routeParams, EasyRTCService) {
+
+    var roomId = $routeParams.roomId;
+
 
     var socket = initSocket();
     var canvas = initCanvas();
 
-    EasyRTCService.init('box0', 'roomName');
+    EasyRTCService.init('box0', roomId);
 
 
     function initSocket(){
@@ -16,6 +19,9 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope','EasyRTCServic
             throw "io.connect failed";
         }
         else {
+
+            socket.emit('createRoom', roomId);
+
             console.log("application allocated socket ", socket);
             easyrtc.useThisSocketConnection(socket);
         }
@@ -38,7 +44,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope','EasyRTCServic
         canvas.freeDrawingBrush.color = '#41a8c7';
 
         canvas.on('mouse:up', function(options){
-            //console.log(JSON.stringify(canvas));
             var data = JSON.stringify(canvas.toDatalessJSON());
             socket.emit('canvas data', data);
         });

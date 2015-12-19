@@ -8,7 +8,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             controller: 'MainController'
         })
 
-        .when('/board', {
+        .when('/board/:roomId', {
             templateUrl: 'views/board.html',
             controller: 'BoardCtrl'
         });
