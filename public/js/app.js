@@ -1,1 +1,1 @@
-angular.module('whiteboard', ['ngRoute', 'appRoutes', 'MainCtrl', 'TestCtrl']);
+angular.module('whiteboard', ['ngRoute', 'appRoutes', 'MainCtrl', 'BoardCtrl', 'EasyRTCService', 'FabricService']);

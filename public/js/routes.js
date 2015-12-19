@@ -8,9 +8,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', '
             controller: 'MainController'
         })
 
-        .when('/test', {
-            templateUrl: 'views/test.html',
-            controller: 'TestCtrl'
+        .when('/board', {
+            templateUrl: 'views/board.html',
+            controller: 'BoardCtrl'
         });
 
     $locationProvider.html5Mode(true);
