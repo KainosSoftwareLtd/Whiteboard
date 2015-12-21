@@ -6,8 +6,65 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
     var socket = initSocket();
     var canvas = initCanvas();
 
-    EasyRTCService.init('box0', roomId);
-    EasyRTCService.setClientVideoStream('box1')
+
+
+    //EasyRTCService.init('box0', roomId);
+    ////EasyRTCService.setClientVideoStream('box1');
+
+
+    easyrtc.enableDebug(true);
+    console.log("Initializing.");
+    easyrtc.enableAudio(false);
+    easyrtc.enableAudioReceive(false);
+    easyrtc.setRoomOccupantListener(callEverybodyElse);
+
+    easyrtc.easyApp("kainos-whiteboard", "box0", ["box1", "box2", "box3"], loginSuccess);
+    easyrtc.setDisconnectListener( function() {
+        easyrtc.showError("LOST-CONNECTION", "Lost connection to signaling server");
+    });
+
+
+    function callEverybodyElse(roomName, otherPeople) {
+
+        easyrtc.setRoomOccupantListener(null); // so we're only called once.
+
+        var list = [];
+        var connectCount = 0;
+        for (var easyrtcid in otherPeople) {
+            list.push(easyrtcid);
+        }
+        //
+        // Connect in reverse order. Latter arriving people are more likely to have
+        // empty slots.
+        //
+        function establishConnection(position) {
+            function callSuccess() {
+                connectCount++;
+                if (connectCount < maxCALLERS && position > 0) {
+                    establishConnection(position - 1);
+                  //  $scope.$apply();
+                }
+            }
+
+            function callFailure(errorCode, errorText) {
+                easyrtc.showError(errorCode, errorText);
+                if (connectCount < maxCALLERS && position > 0) {
+                    establishConnection(position - 1);
+                   // $scope.$apply();
+                }
+            }
+
+            easyrtc.call(list[position], callSuccess, callFailure);
+           // $scope.$apply();
+
+        }
+
+        if (list.length > 0) {
+            establishConnection(list.length - 1);
+        }
+
+       // $scope.$apply();
+    }
 
 
     function initSocket(){
