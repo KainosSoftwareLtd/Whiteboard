@@ -17,7 +17,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
     easyrtc.enableAudio(false);
     easyrtc.enableAudioReceive(false);
     easyrtc.setRoomOccupantListener(callEverybodyElse);
-
+    easyrtc.joinRoom(roomId);
     easyrtc.easyApp("kainos-whiteboard", "box0", ["box1", "box2", "box3"], loginSuccess);
     easyrtc.setDisconnectListener( function() {
         easyrtc.showError("LOST-CONNECTION", "Lost connection to signaling server");
