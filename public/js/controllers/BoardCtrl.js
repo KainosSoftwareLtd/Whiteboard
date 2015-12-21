@@ -1,36 +1,56 @@
-angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams', 'EasyRTCService', function($scope, $routeParams, EasyRTCService) {
+angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
 
     var roomId = $routeParams.roomId;
 
+    var maxCALLERS = 4;
 
     var socket = initSocket();
     var canvas = initCanvas();
 
+    function init() {
+        //easyrtc.enableDebug(true);
+        console.log("Initializing.");
 
 
-    //EasyRTCService.init('box0', roomId);
-    ////EasyRTCService.setClientVideoStream('box1');
+        easyrtc.setRoomOccupantListener(roomListener);
+        var connectSuccess = function (myId) {
+            console.log("My easyrtcid is " + myId);
+        };
 
 
-    easyrtc.enableDebug(true);
-    console.log("Initializing.");
-    easyrtc.enableAudio(false);
-    easyrtc.enableAudioReceive(false);
-    easyrtc.setRoomOccupantListener(callEverybodyElse);
-    easyrtc.joinRoom(roomId);
-    easyrtc.easyApp("kainos-whiteboard", "box0", ["box1", "box2", "box3"], loginSuccess);
-    easyrtc.setDisconnectListener( function() {
-        easyrtc.showError("LOST-CONNECTION", "Lost connection to signaling server");
+        var connectFailure = function (errorCode, errText) {
+            console.log(errText);
+        };
+        easyrtc.initMediaSource(
+            function () {        // success callback
+                var selfVideo = document.getElementById("myVideo");
+                easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
+                easyrtc.joinRoom(roomId);
+                easyrtc.connect("kainos-whiteboard", connectSuccess, connectFailure);
+            },
+            connectFailure
+        );
+    }
+
+
+
+    easyrtc.setStreamAcceptor( function(callerEasyrtcid, stream) {
+        var video = document.getElementById("clientVideo");
+        easyrtc.setVideoObjectSrc(video, stream);
+    });
+
+    easyrtc.setOnStreamClosed( function (callerEasyrtcid) {
+        easyrtc.setVideoObjectSrc(document.getElementById('caller'), "");
     });
 
 
-    function callEverybodyElse(roomName, otherPeople) {
+    function roomListener(roomName, otherPeople) {
 
         easyrtc.setRoomOccupantListener(null); // so we're only called once.
 
         var list = [];
         var connectCount = 0;
-        for (var easyrtcid in otherPeople) {
+        for(var easyrtcid in otherPeople ) {
             list.push(easyrtcid);
         }
         //
@@ -38,34 +58,43 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         // empty slots.
         //
         function establishConnection(position) {
+
             function callSuccess() {
+
                 connectCount++;
-                if (connectCount < maxCALLERS && position > 0) {
-                    establishConnection(position - 1);
-                  //  $scope.$apply();
+                if( connectCount < maxCALLERS && position > 0) {
+                    establishConnection(position-1);
                 }
             }
-
             function callFailure(errorCode, errorText) {
                 easyrtc.showError(errorCode, errorText);
-                if (connectCount < maxCALLERS && position > 0) {
-                    establishConnection(position - 1);
-                   // $scope.$apply();
+                if( connectCount < maxCALLERS && position > 0) {
+                    establishConnection(position-1);
                 }
             }
-
             easyrtc.call(list[position], callSuccess, callFailure);
-           // $scope.$apply();
 
         }
-
-        if (list.length > 0) {
-            establishConnection(list.length - 1);
+        if( list.length > 0) {
+            establishConnection(list.length-1);
         }
-
-       // $scope.$apply();
     }
 
+    function performCall(easyrtcid) {
+        easyrtc.call(
+            easyrtcid,
+            function(easyrtcid) { console.log("completed call to " + easyrtcid);},
+            function(errorCode, errorText) { console.log("err:" + errorText);},
+            function(accepted, bywho) {
+                console.log((accepted?"accepted":"rejected")+ " by " + bywho);
+            }
+        );
+    }
+
+
+    function loginSuccess(){
+        //document.getElementById('box0').style.zIndex = 1;
+    }
 
     function initSocket(){
         var socket = io.connect(null, {
@@ -109,4 +138,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         return canvas;
     }
 
+
+    init();
 }]);
