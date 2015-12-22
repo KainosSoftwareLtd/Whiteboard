@@ -1,23 +1,44 @@
 <!DOCTYPE html>
-<html>
 <head>
     <title>{{title}}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="/easyrtc/api/easyrtc.css" />
+    <base href="/">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+
+
     <script src="/socket.io-client/socket.io.js"></script>
     <script type="text/javascript" src="/easyrtc/api/easyrtc.js"></script>
-    <link rel="stylesheet" type="text/css" href="easyrtc/demos/css/demo_room.css" />
-    <script type="text/javascript" src="/easyrtc/demos/js/demo_multiparty.js"></script>
+
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
-    <script type="text/javascript" src="/javascript/fabrictest.js"></script>
 
+
+
+    <script type="text/javascript" src="angular/angular.js"></script>
+    <script type="text/javascript" src="angular-route/angular-route.js"></script>
+
+
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/controllers/MainCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/BoardCtrl.js"></script>
+    <!--<script type="text/javascript" src="/js/services/EasyRTCService.js"></script>-->
+    <script type="text/javascript" src="/js/services/FabricService.js"></script>
+    <script type="text/javascript" src="/js/routes.js"></script>
 
 </head>
 
-<body>
-    {{{body}}}
+<body ng-app="whiteboard">
+    <div class="container" ng-controller="MainController">
+        <div ng-view></div>
+    </div>
 </body>
-</html>

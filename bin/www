@@ -44,10 +44,15 @@ var socketServer = io.listen(server, {"log level":3});
 var rtc = easyrtc.listen(app, socketServer);
 
 
-//This is for to send the data to clients
 socketServer.on('connection', function (socket) {
+
+    socket.on('createRoom', function(roomId){
+        socket.roomId = roomId;
+        socket.join(roomId);
+    });
+
     socket.on('canvas data', function (data) {
-        socket.broadcast.emit('canvas data', data);
+        socket.to(socket.roomId).broadcast.emit('canvas data', data);
     });
 });
 
@@ -67,6 +72,7 @@ easyrtc.on("getIceConfig", function(connectionObj, callback) {
                 application: "default",
                 room: "default",
                 secure: 0
+
             },
             json: true
         },

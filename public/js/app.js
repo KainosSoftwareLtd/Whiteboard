@@ -1,0 +1,1 @@
+angular.module('whiteboard', ['ngRoute', 'appRoutes', 'MainCtrl', 'BoardCtrl','FabricService']);
