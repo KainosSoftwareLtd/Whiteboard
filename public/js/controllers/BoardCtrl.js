@@ -6,17 +6,16 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
 
     var socket = initSocket();
     var canvas = initCanvas();
+    initRTC();
 
-    function init() {
+    function initRTC() {
         //easyrtc.enableDebug(true);
         console.log("Initializing.");
-
 
         easyrtc.setRoomOccupantListener(roomListener);
         var connectSuccess = function (myId) {
             console.log("My easyrtcid is " + myId);
         };
-
 
         var connectFailure = function (errorCode, errText) {
             console.log(errText);
@@ -32,8 +31,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         );
     }
 
-
-
     easyrtc.setStreamAcceptor( function(callerEasyrtcid, stream) {
         var video = document.getElementById("clientVideo");
         easyrtc.setVideoObjectSrc(video, stream);
@@ -43,7 +40,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         easyrtc.setVideoObjectSrc(document.getElementById('caller'), "");
     });
 
-
+    //REF:https://easyrtc.com/docs/guides/easyrtc_client_tutorial.php
     function roomListener(roomName, otherPeople) {
 
         easyrtc.setRoomOccupantListener(null); // so we're only called once.
@@ -78,22 +75,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         if( list.length > 0) {
             establishConnection(list.length-1);
         }
-    }
-
-    function performCall(easyrtcid) {
-        easyrtc.call(
-            easyrtcid,
-            function(easyrtcid) { console.log("completed call to " + easyrtcid);},
-            function(errorCode, errorText) { console.log("err:" + errorText);},
-            function(accepted, bywho) {
-                console.log((accepted?"accepted":"rejected")+ " by " + bywho);
-            }
-        );
-    }
-
-
-    function loginSuccess(){
-        //document.getElementById('box0').style.zIndex = 1;
     }
 
     function initSocket(){
@@ -138,6 +119,4 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         return canvas;
     }
 
-
-    init();
 }]);
