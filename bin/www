@@ -51,6 +51,11 @@ socketServer.on('connection', function (socket) {
         socket.join(roomId);
     });
 
+    socket.on('leaveRoom', function(data) {
+        socket.leave(socket.roomId);
+        //socket.disconnect();
+    });
+
     socket.on('canvas data', function (data) {
         socket.to(socket.roomId).broadcast.emit('canvas data', data);
     });

@@ -26,5 +26,4 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $lo
 
         $scope.inputField += num;
     };
-
 });
