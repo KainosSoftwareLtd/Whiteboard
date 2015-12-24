@@ -1,8 +1,7 @@
-angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', function($scope) {
+angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', function($scope, $location) {
 
 
-
-    var roomId = '3333'; //$routeParams.roomId;
+    var roomId =  $location.path().split(/[\s/]+/).pop();
 
     var maxCALLERS = 4;
 
@@ -47,8 +46,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', function($sco
         console.log('got data from ' + who, msgType, data);
         canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
     }
-
-
 
 
     easyrtc.setStreamAcceptor( function(callerEasyrtcid, stream) {
@@ -96,30 +93,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', function($sco
         }
     }
 
-    //function initSocket(){
-    //    var socket = io.connect(null, {
-    //        'connect timeout': 10000,
-    //        'force new connection': true
-    //    });
-    //
-    //    if (!socket) {
-    //        throw "io.connect failed";
-    //    }
-    //    else {
-    //
-    //        socket.emit('createRoom', roomId);
-    //
-    //        console.log("application allocated socket ", socket);
-    //        easyrtc.useThisSocketConnection(socket);
-    //    }
-    //
-    //    socket.on('canvas data', function(data) {
-    //        canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
-    //    });
-    //
-    //    return socket;
-    //}
-
     function initCanvas() {
         var canvas = this.__canvas = new fabric.Canvas('c', {
             isDrawingMode: true,
@@ -144,43 +117,5 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', function($sco
 
         return canvas;
     }
-
-
-
-    //$scope.$on("$locationChangeStart", function(){
-    //    console.log('location changed');
-    //
-    //        easyrtc.leaveRoom(roomId);
-    //        easyrtc.hangupAll();
-    //        //socket.emit('leaveRoom', roomId);
-    //        easyrtc.clearMediaStream( document.getElementById('myVideo'));
-    //        easyrtc.setVideoObjectSrc(document.getElementById('clientVideo'),'');
-    //        easyrtc.closeLocalMediaStream();
-    //        easyrtc.setRoomOccupantListener( function(){});
-    //        easyrtc.disconnect();
-    //
-    //});
-
-    //socket.on('connect', function(data){
-    //   console.log('my socket connected ' + data);
-    //});
-    //
-    //socket.on('disconnect', function(data){
-    //   console.log('my socket disconnected ' + data );
-    //
-    //});
-
-    //$scope.disconnect = function () {
-    //    easyrtc.leaveRoom(roomId);
-    //    easyrtc.clearMediaStream( document.getElementById('myVideo'));
-    //    easyrtc.setVideoObjectSrc(document.getElementById('clientVideo'),'');
-    //    easyrtc.closeLocalMediaStream();
-    //    easyrtc.setRoomOccupantListener( function(){});
-    //    easyrtc.disconnect();
-    //};
-
-    //$scope.reconnect = function() {
-    //
-    //}
 
 }]);
