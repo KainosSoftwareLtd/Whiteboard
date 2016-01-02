@@ -1,10 +1,11 @@
-angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', function($scope, $location) {
 
-    var roomId = $routeParams.roomId;
+
+    var roomId =  $location.path().split(/[\s/]+/).pop();
 
     var maxCALLERS = 4;
 
-    var socket = initSocket();
+   // var socket = initSocket();
     var canvas = initCanvas();
     initRTC();
 
@@ -17,19 +18,35 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
             console.log("My easyrtcid is " + myId);
         };
 
+        easyrtc.setPeerListener(gotData);
+
         var connectFailure = function (errorCode, errText) {
-            console.log(errText);
+            console.log('connection error ' + errText);
         };
         easyrtc.initMediaSource(
             function () {        // success callback
                 var selfVideo = document.getElementById("myVideo");
                 easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
-                easyrtc.joinRoom(roomId);
+
+                easyrtc.joinRoom(roomId, function(data){
+                    console.log('Successfuly connected to room ' + data)
+                },
+                function(data){
+                    console.log('Error connecting to room ' + data);
+                });
+
                 easyrtc.connect("kainos-whiteboard", connectSuccess, connectFailure);
             },
             connectFailure
         );
     }
+
+
+    function gotData(who, msgType, data){
+        console.log('got data from ' + who, msgType, data);
+        canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
+    }
+
 
     easyrtc.setStreamAcceptor( function(callerEasyrtcid, stream) {
         var video = document.getElementById("clientVideo");
@@ -57,7 +74,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         function establishConnection(position) {
 
             function callSuccess() {
-
                 connectCount++;
                 if( connectCount < maxCALLERS && position > 0) {
                     establishConnection(position-1);
@@ -77,30 +93,6 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
         }
     }
 
-    function initSocket(){
-        var socket = io.connect(null, {
-            'connect timeout': 10000,
-            'force new connection': true
-        });
-
-        if (!socket) {
-            throw "io.connect failed";
-        }
-        else {
-
-            socket.emit('createRoom', roomId);
-
-            console.log("application allocated socket ", socket);
-            easyrtc.useThisSocketConnection(socket);
-        }
-
-        socket.on('canvas data', function(data) {
-            canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
-        });
-
-        return socket;
-    }
-
     function initCanvas() {
         var canvas = this.__canvas = new fabric.Canvas('c', {
             isDrawingMode: true,
@@ -113,7 +105,14 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$routeParams
 
         canvas.on('mouse:up', function(options){
             var data = JSON.stringify(canvas.toDatalessJSON());
-            socket.emit('canvas data', data);
+            //socket.emit('canvas data', data);
+
+            easyrtc.sendDataWS({'targetRoom': roomId}, 'canvasStuff', data, function(reply) {
+                if (reply.msgType === "error") {
+                    easyrtc.showError(reply.msgData.errorCode, reply.msgData.errorText);
+                }
+            });
+
         });
 
         return canvas;

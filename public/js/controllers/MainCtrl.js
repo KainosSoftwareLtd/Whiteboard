@@ -1,11 +1,12 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $location) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $window) {
 
     $scope.inputField = '';
     $scope.buttonDisabled = true;
 
 
     $scope.go = function() {
-        $location.path('/board/' + $scope.inputField);
+        //$location.path('/board/' + $scope.inputField);
+        $window.location.href = '/board/' + $scope.inputField;
     };
 
     $scope.createNewMeeting = function() {
@@ -26,5 +27,4 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $lo
 
         $scope.inputField += num;
     };
-
 });

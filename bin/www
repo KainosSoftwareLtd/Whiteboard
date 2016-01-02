@@ -44,18 +44,6 @@ var socketServer = io.listen(server, {"log level":3});
 var rtc = easyrtc.listen(app, socketServer);
 
 
-socketServer.on('connection', function (socket) {
-
-    socket.on('createRoom', function(roomId){
-        socket.roomId = roomId;
-        socket.join(roomId);
-    });
-
-    socket.on('canvas data', function (data) {
-        socket.to(socket.roomId).broadcast.emit('canvas data', data);
-    });
-});
-
 
 
 //REF: http://xirsys.com/easyrtc/

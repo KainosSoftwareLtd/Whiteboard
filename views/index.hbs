@@ -1,0 +1,95 @@
+<div class="container" ng-controller="MainController">
+<div class="jumbotron">
+    <div class="container">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+
+        <div class="row">
+            <h2 class="text-center">Enter Meeting PIN</h2>
+        </div>
+
+        <div class="row">
+            <h3 class="text-center" ng-bind="inputField"></h3>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-offset-4 col-sm-2">
+                <button ng-click="addNumberToDisplay(1)" type="button" class="btn btn-default">1</button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="addNumberToDisplay(2)" type="button" class="btn btn-default">2</button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="addNumberToDisplay(3)" type="button" class="btn btn-default">3</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-offset-4 col-sm-2">
+                <button ng-click="addNumberToDisplay(4)" type="button" class="btn btn-default">4</button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="addNumberToDisplay(5)" type="button" class="btn btn-default">5</button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="addNumberToDisplay(6)" type="button" class="btn btn-default">6</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-offset-4 col-sm-2">
+                <button ng-click="addNumberToDisplay(7)" type="button" class="btn btn-default">7</button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="addNumberToDisplay(8)" type="button" class="btn btn-default">8</button>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="addNumberToDisplay(9)" type="button" class="btn btn-default">9</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-default">0</button>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-3"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-9">
+                <button id="btn_go" ng-click="go()" type="button" ng-disabled="buttonDisabled" class="btn btn-primary">Go</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-offset-6 col-sm-2">
+                <h3>or</h3>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-9">
+                <button type="button" class="btn btn-primary">Create new meeting</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
