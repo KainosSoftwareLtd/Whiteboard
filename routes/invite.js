@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
 
     var cal = ical();
 
-    var event = cal.createEvent({
+    cal.createEvent({
         start: new Date(),
         end: new Date(new Date().getTime() + 3600000),
         timestamp: new Date(),
@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
     var invite = cal.toString();
 
     var mailOptions = {
-        from: 'Fred Foo ✔ <technoir08@gmail.com>', // sender address
+        from: 'Whiteboard Mailer <whiteboardmailler@gmail.com>', // sender address
         to: '***REMOVED***, ***REMOVED***', // list of receivers
         subject: 'Hello ✔', // Subject line
         attachments: [
@@ -42,13 +42,12 @@ router.post('/', function (req, res, next) {
 
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
-            return console.log(error);
+            res.status(500).send(error);
         }
         console.log('Message sent: ' + info.response);
-
+        res.status(200).send('invite sent');
     });
 
-    next();
 });
 
 module.exports = router;
