@@ -9,6 +9,10 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $wi
         $window.location.href = '/board/' + $scope.inputField;
     };
 
+    $scope.newMeeting = function () {
+        $window.location.href = '/invite/';
+    };
+
     $scope.createNewMeeting = function() {
 
     };
