@@ -13,22 +13,29 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function (req, res, next) {
 
+    var hostName = req.headers.host;
+    var roomNumber = req.body.roomNumber;
+    var link = "<a href=/" + hostName + "/board/" + roomNumber + "/>here</a>";
+    var startDate = new Date();
+    var endDate = new Date(new Date().getTime() + 3600000);
+
+
     var cal = ical();
 
     cal.createEvent({
-        start: new Date(),
-        end: new Date(new Date().getTime() + 3600000),
+        start: startDate,
+        end: endDate,
         timestamp: new Date(),
-        summary: 'My Event',
-        organizer: 'Sebastian Pekarek <mail@example.com>'
+        summary: 'Whiteboard Meeting',
+        organizer: 'Michael Kemp <mail@example.com>'
     });
 
     var invite = cal.toString();
 
     var mailOptions = {
-        from: 'Whiteboard Mailer <whiteboardmailler@gmail.com>', // sender address
-        to: '***REMOVED***, ***REMOVED***', // list of receivers
-        subject: 'Hello ✔', // Subject line
+        from: 'Whiteboard Mailer <whiteboardmailler@gmail.com>',
+        to: 'Michael Kemp, ***REMOVED***', // list of receivers
+        subject: 'Whiteboard Meeting Request',
         attachments: [
             {
                 filename: 'invite.ics',
@@ -37,7 +44,7 @@ router.post('/', function (req, res, next) {
             }
         ],
 
-        html: '<b>Hello world ✔</b>'
+        html: "<b>Please join my meeting at room number " + roomNumber +  " you can do this by visiting the Whiteboard Room in your office and entering the room number or from your desktop by clicking the following link " + link + "<\/b>"
     };
 
     transporter.sendMail(mailOptions, function(error, info){
