@@ -16,7 +16,7 @@
     <div class="col-md-8" >
         <canvas id="c" style="border:1px solid #000000;"></canvas>
     </div>
-
+    <button type="button" class="btn btn-primary" ng-click="toggleDrawingMode()">toggle drawing mode</button>
     <input type="range" min="0" max="100" ng-model="brushSize" />
     <color-picker
             ng-model='brushColor'

@@ -125,8 +125,11 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
 
     $scope.$watch('brushSize', function() {
         canvas.freeDrawingBrush.width = $scope.brushSize;
-    })
+    });
 
+    $scope.toggleDrawingMode = function() {
+       canvas.isDrawingMode = !canvas.isDrawingMode;
+    };
 
 
 
