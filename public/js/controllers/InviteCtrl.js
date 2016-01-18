@@ -24,7 +24,7 @@ angular.module('InviteCtrl', []).controller('InviteCtrl', ['$scope', '$http' , f
         ];
 
 
-    $scope.doSomething = function() {
+    $scope.sendInvite = function() {
         $http.post('/invite', { roomNumber: randomRoomNumber})
             .then(function success(response){
                 console.log('email sent ' + response.data);
