@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row" ng-controller="InviteCtrl">
+        <div class="col-md-12">
+
+            <input type="text" class="form-control" placeholder="search people" ng-model="search">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <th></th>
+                <th>Name</th>
+                <th>Dept.</th>
+                <th></th>
+                </thead>
+                <tr ng-repeat="person in mockTableData | filter:search">
+                    <td><img src="{[{person.userImage}]}"></td>
+                    <td>{[{person.name}]}</td>
+                    <td>{[{person.department}]}</td>
+                    <td><button type="button" class="btn btn-primary" ng-click="doSomething()" >Add</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

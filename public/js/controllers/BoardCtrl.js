@@ -10,7 +10,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
     initRTC();
 
     function initRTC() {
-        //easyrtc.enableDebug(true);
+        easyrtc.enableDebug(true);
         console.log("Initializing.");
 
         easyrtc.setRoomOccupantListener(roomListener);

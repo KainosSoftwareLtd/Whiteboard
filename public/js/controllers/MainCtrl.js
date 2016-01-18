@@ -5,8 +5,11 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $wi
 
 
     $scope.go = function() {
-        //$location.path('/board/' + $scope.inputField);
         $window.location.href = '/board/' + $scope.inputField;
+    };
+
+    $scope.newMeeting = function () {
+        $window.location.href = '/invite/';
     };
 
     $scope.createNewMeeting = function() {
