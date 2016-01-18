@@ -1,16 +1,18 @@
-angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', function($scope, $location) {
+angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope', '$location', function($scope, $location) {
 
 
     var roomId =  $location.path().split(/[\s/]+/).pop();
-
     var maxCALLERS = 4;
 
-   // var socket = initSocket();
+    $scope.brushColor = '#41a8c7';
+    $scope.brushSize = 5;
+
     var canvas = initCanvas();
+
     initRTC();
 
     function initRTC() {
-        easyrtc.enableDebug(true);
+        //easyrtc.enableDebug(true);
         console.log("Initializing.");
 
         easyrtc.setRoomOccupantListener(roomListener);
@@ -100,12 +102,11 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
             height: 1000
         });
 
-        canvas.freeDrawingBrush.width = 10;
-        canvas.freeDrawingBrush.color = '#41a8c7';
+        canvas.freeDrawingBrush.width = $scope.brushSize;
+        canvas.freeDrawingBrush.color = $scope.brushColor;
 
         canvas.on('mouse:up', function(options){
             var data = JSON.stringify(canvas.toDatalessJSON());
-            //socket.emit('canvas data', data);
 
             easyrtc.sendDataWS({'targetRoom': roomId}, 'canvasStuff', data, function(reply) {
                 if (reply.msgType === "error") {
@@ -117,5 +118,16 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
         return canvas;
     }
+
+    $scope.onColorChange = function($event, color) {
+        canvas.freeDrawingBrush.color = color;
+    };
+
+    $scope.$watch('brushSize', function() {
+        canvas.freeDrawingBrush.width = $scope.brushSize;
+    })
+
+
+
 
 }]);

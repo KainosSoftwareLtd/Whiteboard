@@ -16,4 +16,15 @@
     <div class="col-md-8" >
         <canvas id="c" style="border:1px solid #000000;"></canvas>
     </div>
+
+    <input type="range" min="0" max="100" ng-model="brushSize" />
+    <color-picker
+            ng-model='brushColor'
+            color-picker-format="'hex'"
+            color-picker-swatch="true"
+            color-picker-alpha="false"
+            color-picker-swatch-only="true"
+            color-picker-on-change='onColorChange($event, brushColor)'>
+    </color-picker>
+
 </div>
