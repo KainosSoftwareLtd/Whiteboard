@@ -20,7 +20,8 @@
     <button type="button" class="btn btn-primary" ng-click="useMoveTool()">Move mode</button>
     <button type="button" class="btn btn-primary" ng-click="useRectangleTool()">Draw rectangle</button>
     <button type="button" class="btn btn-primary" ng-click="clearBoard()">Clear board</button>
-    <input type="range" min="0" max="100" ng-change="changeBrushSize()" ng-model="brushSize" />
+    <button type="button" class="btn btn-primary" ng-click="changeBrushSize('+')">Increase brush size</button>
+    <button type="button" class="btn btn-primary" ng-click="changeBrushSize('-')">Decrease brush size</button>
     <color-picker
             ng-model='brushColor'
             color-picker-format="'hex'"

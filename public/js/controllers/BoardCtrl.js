@@ -6,10 +6,11 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
 
     $scope.brushColor = '#41a8c7';
     $scope.brushSize = 5;
+    var brushSizeStep = 5;
 
     var canvas = initCanvas();
 
-    initRTC();
+    //initRTC();
 
     function initRTC() {
         //easyrtc.enableDebug(true);
@@ -150,8 +151,14 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
         canvas.freeDrawingBrush.color = color;
     };
 
-    $scope.changeBrushSize = function() {
-        canvas.freeDrawingBrush.width = $scope.brushSize;
+    $scope.changeBrushSize = function (direction) {
+        if(direction === '+') {
+            $scope.brushSize += brushSizeStep;
+        }
+        if(direction === '-') {
+            $scope.brushSize -= brushSizeStep;
+        }
+        canvas.freeDrawingBrush.width =  $scope.brushSize;
     };
 
     $scope.clearBoard = function () {
