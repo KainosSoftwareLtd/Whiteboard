@@ -10,7 +10,7 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
 
     var canvas = initCanvas();
 
-    //initRTC();
+    initRTC();
 
     function initRTC() {
         //easyrtc.enableDebug(true);
