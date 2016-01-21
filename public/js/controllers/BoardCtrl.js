@@ -150,9 +150,9 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
         canvas.freeDrawingBrush.color = color;
     };
 
-    $scope.$watch('brushSize', function () {
+    $scope.changeBrushSize = function() {
         canvas.freeDrawingBrush.width = $scope.brushSize;
-    });
+    };
 
     $scope.clearBoard = function () {
         canvas.clear();
