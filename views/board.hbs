@@ -16,4 +16,20 @@
     <div class="col-md-8" >
         <canvas id="c" style="border:1px solid #000000;"></canvas>
     </div>
+    <button type="button" class="btn btn-primary" ng-click="usePencilTool()">Pencil mode</button>
+    <button type="button" class="btn btn-primary" ng-click="useMoveTool()">Move mode</button>
+    <button type="button" class="btn btn-primary" ng-click="useRectangleTool()">Draw rectangle</button>
+    <button type="button" class="btn btn-primary" ng-click="clearBoard()">Clear board</button>
+    <button type="button" class="btn btn-primary" ng-click="changeBrushSize('+')">Increase brush size</button>
+    <button type="button" class="btn btn-primary" ng-click="changeBrushSize('-')">Decrease brush size</button>
+    <button type="button" class="btn btn-primary" ng-click="undo()">undo</button>
+    <color-picker
+            ng-model='brushColor'
+            color-picker-format="'hex'"
+            color-picker-swatch="true"
+            color-picker-alpha="false"
+            color-picker-swatch-only="true"
+            color-picker-on-change='onColorChange($event, brushColor)'>
+    </color-picker>
+
 </div>
