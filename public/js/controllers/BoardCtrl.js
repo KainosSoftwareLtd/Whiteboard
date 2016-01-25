@@ -147,6 +147,12 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
         canvas.isDrawingMode = false;
     };
 
+    $scope.undo = function(){
+        canvas._objects.pop();
+        canvas.renderAll();
+        sendData();
+    };
+
     $scope.onColorChange = function ($event, color) {
         canvas.freeDrawingBrush.color = color;
     };
