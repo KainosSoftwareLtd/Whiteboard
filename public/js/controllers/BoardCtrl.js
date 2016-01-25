@@ -161,7 +161,7 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
         if(direction === '+') {
             $scope.brushSize += brushSizeStep;
         }
-        if(direction === '-') {
+        if(direction === '-' && !($scope.brushSize <= brushSizeStep)) {
             $scope.brushSize -= brushSizeStep;
         }
         canvas.freeDrawingBrush.width =  $scope.brushSize;
