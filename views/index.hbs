@@ -7,84 +7,90 @@
         </div>
     </div>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <h2 class="text-center">Enter Meeting PIN</h2>
+    <div style="width: 400px;" class="row">
+
+        <div class="col-xs-offset-8 col-xs-12">
+
+            <div class="row">
+                <div class="text-center col-xs-12">
+                    <h2>Enter Meeting PIN</h2>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <h3 class="text-center" ng-bind="inputField"></h3>
+            <div class="row">
+                <div class="text-center col-xs-12">
+                    <h3 ng-bind="inputField"></h3>
+                </div>
             </div>
-        </div>
 
-    <div class="row">
-        <div class="col-xs-offset-4 col-xs-4">
-            <div style="width: 200px;" >
+            <div class="row">
+                <div id="keyPad" class="col-xs-offset-4 col-xs-8">
+                    <div style="width: 200px;" >
 
-                <div class="row">
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(1)" type="button" class="btn btn-default">1</button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(2)" type="button" class="btn btn-default">2</button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(3)" type="button" class="btn btn-default">3</button>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(1)" type="button" class="btn btn-default">1</button>
+                            </div>
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(2)" type="button" class="btn btn-default">2</button>
+                            </div>
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(3)" type="button" class="btn btn-default">3</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(4)" type="button" class="btn btn-default">4</button>
+                            </div>
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(5)" type="button" class="btn btn-default">5</button>
+                            </div>
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(6)" type="button" class="btn btn-default">6</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(7)" type="button" class="btn btn-default">7</button>
+                            </div>
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(8)" type="button" class="btn btn-default">8</button>
+                            </div>
+                            <div class="col-xs-2">
+                                <button ng-click="addNumberToDisplay(9)" type="button" class="btn btn-default">9</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-offset-2 col-xs-2">
+                                <button type="button" class="btn btn-default">0</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(4)" type="button" class="btn btn-default">4</button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(5)" type="button" class="btn btn-default">5</button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(6)" type="button" class="btn btn-default">6</button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(7)" type="button" class="btn btn-default">7</button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(8)" type="button" class="btn btn-default">8</button>
-                    </div>
-                    <div class="col-xs-2">
-                        <button ng-click="addNumberToDisplay(9)" type="button" class="btn btn-default">9</button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-offset-2 col-xs-2">
-                        <button type="button" class="btn btn-default">0</button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-offset-4">
                         <button id="btn_go" ng-click="go()" type="button" ng-disabled="buttonDisabled" class="btn btn-primary">Go</button>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12">
-                        <h3 class="text-center">or</h3>
+                    <div class="text-center col-xs-12">
+                        <h3>or</h3>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-offset-4">
                         <button type="button" ng-click="newMeeting()" class="btn btn-primary">Create new meeting</button>
                     </div>
                 </div>
-
             </div>
 
         </div>
+
     </div>
 </div>

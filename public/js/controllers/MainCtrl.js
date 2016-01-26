@@ -1,6 +1,6 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $window) {
 
-    $scope.inputField = '463';
+    $scope.inputField = '';
     $scope.buttonDisabled = true;
 
 
