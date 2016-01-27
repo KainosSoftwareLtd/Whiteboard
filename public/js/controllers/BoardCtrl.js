@@ -153,8 +153,8 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
         sendData();
     };
 
-    $scope.onColorChange = function ($event, color) {
-        canvas.freeDrawingBrush.color = color;
+    $scope.onColorChange = function () {
+        canvas.freeDrawingBrush.color = $scope.brushColor;
     };
 
     $scope.changeBrushSize = function (direction) {

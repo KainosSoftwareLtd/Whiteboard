@@ -23,14 +23,6 @@
     <button type="button" class="btn btn-default glyphicon glyphicon-th-large" ng-click="useRectangleTool()"></button>
     <button type="button" class="btn btn-default glyphicon glyphicon-remove-circle" ng-click="clearBoard()"></button>
     <button type="button" class="btn btn-default glyphicon glyphicon-step-backward" ng-click="undo()"></button>
-    <color-picker id="colour-picker"
-            type="button" class="btn btn-default"
-            ng-model='brushColor'
-            color-picker-format="'hex'"
-            color-picker-swatch="true"
-            color-picker-alpha="false"
-            color-picker-swatch-only="true"
-            color-picker-on-change='onColorChange($event, brushColor)'>
-    </color-picker>
+    <input type="color" style="width: 40px" ng-model="brushColor" ng-change="onColorChange()">
 
 </div>
