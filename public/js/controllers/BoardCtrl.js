@@ -1,4 +1,4 @@
-angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope', '$location', function ($scope, $location) {
+angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', function ($scope, $location) {
 
 
     var roomId = $location.path().split(/[\s/]+/).pop();
