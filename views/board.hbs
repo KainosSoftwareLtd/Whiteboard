@@ -16,14 +16,15 @@
     <div class="col-md-8" >
         <canvas id="c" style="border:1px solid #000000;"></canvas>
     </div>
-    <button type="button" class="btn btn-primary" ng-click="usePencilTool()">Pencil mode</button>
-    <button type="button" class="btn btn-primary" ng-click="useMoveTool()">Move mode</button>
-    <button type="button" class="btn btn-primary" ng-click="useRectangleTool()">Draw rectangle</button>
-    <button type="button" class="btn btn-primary" ng-click="clearBoard()">Clear board</button>
-    <button type="button" class="btn btn-primary" ng-click="changeBrushSize('+')">Increase brush size</button>
-    <button type="button" class="btn btn-primary" ng-click="changeBrushSize('-')">Decrease brush size</button>
-    <button type="button" class="btn btn-primary" ng-click="undo()">undo</button>
-    <color-picker
+    <button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="usePencilTool()"></button>
+    <button type="button" class="btn btn-default glyphicon glyphicon-chevron-up" ng-click="changeBrushSize('+')"></button>
+    <button type="button" class="btn btn-default glyphicon glyphicon-chevron-down" ng-click="changeBrushSize('-')"></button>
+    <button type="button" class="btn btn-default glyphicon glyphicon-move" ng-click="useMoveTool()"></button>
+    <button type="button" class="btn btn-default glyphicon glyphicon-th-large" ng-click="useRectangleTool()"></button>
+    <button type="button" class="btn btn-default glyphicon glyphicon-remove-circle" ng-click="clearBoard()"></button>
+    <button type="button" class="btn btn-default glyphicon glyphicon-step-backward" ng-click="undo()"></button>
+    <color-picker id="colour-picker"
+            type="button" class="btn btn-default"
             ng-model='brushColor'
             color-picker-format="'hex'"
             color-picker-swatch="true"

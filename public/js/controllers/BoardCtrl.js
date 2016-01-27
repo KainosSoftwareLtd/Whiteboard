@@ -101,7 +101,7 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
     function initCanvas() {
         var canvas = this.__canvas = new fabric.Canvas('c', {
             width: 1000,
-            height: 1000
+            height: 750
         });
 
         canvas.freeDrawingBrush.width = $scope.brushSize;
