@@ -1,30 +1,49 @@
-<div class="row" ng-controller="BoardCtrl">
-    <div class="col-md-4">
+<div ng-controller="BoardCtrl">
+<div class="row">
+
+    <div class="col-xs-3">
         <div class="embed-responsive embed-responsive-4by3">
             <video  id="myVideo" style="z-index: 1" ></video>
         </div>
+    </div>
+    <div class="col-xs-3">
         <div class="embed-responsive embed-responsive-4by3">
             <video autoplay="autoplay" id="clientVideo"  style="z-index: 1" ></video>
         </div>
+    </div>
+    <div class="col-xs-3">
         <div class="embed-responsive embed-responsive-4by3">
             <video autoplay="autoplay" id="box2" ></video>
         </div>
+    </div>
+    <div class="col-xs-3">
         <div class="embed-responsive embed-responsive-4by3">
-            <video id="box3" ></video>
+            <video autoplay="autoplay" id="box2" ></video>
         </div>
     </div>
-    <div class="col-md-8" >
-        <canvas id="c" style="border:1px solid #000000;"></canvas>
+
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+    <canvas id="c" style="border:1px solid #000000;"></canvas>
     </div>
-    <div class="btn-toolbar" role="toolbar">
-        <button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="usePencilTool()"></button>
-        <button type="button" class="btn btn-default glyphicon glyphicon-chevron-up" ng-click="changeBrushSize('+')"></button>
-        <button type="button" class="btn btn-default glyphicon glyphicon-chevron-down" ng-click="changeBrushSize('-')"></button>
-        <button type="button" class="btn btn-default glyphicon glyphicon-move" ng-click="useMoveTool()"></button>
-        <button type="button" class="btn btn-default glyphicon glyphicon-th-large" ng-click="useRectangleTool()"></button>
-        <button type="button" class="btn btn-default glyphicon glyphicon-remove-circle" ng-click="clearBoard()"></button>
-        <button type="button" class="btn btn-default glyphicon glyphicon-step-backward" ng-click="undo()"></button>
-        <input class="colour-picker" type="color" ng-model="brushColor" ng-change="onColorChange()">
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-toolbar" role="toolbar">
+            <button type="button" class="btn btn-default glyphicon glyphicon-pencil" ng-click="usePencilTool()"></button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-chevron-down" ng-click="changeBrushSize('-')"></button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-chevron-up" ng-click="changeBrushSize('+')"></button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-move" ng-click="useMoveTool()"></button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-th-large" ng-click="useRectangleTool()"></button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-remove-circle" ng-click="clearBoard()"></button>
+            <button type="button" class="btn btn-default glyphicon glyphicon-step-backward" ng-click="undo()"></button>
+            <input class="colour-picker" type="color" ng-model="brushColor" ng-change="onColorChange()">
+        </div>
     </div>
+</div>
+
 
 </div>
