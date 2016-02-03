@@ -2,7 +2,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
 
     var roomId = $location.path().split(/[\s/]+/).pop();
-    var maxCALLERS = 4;
+    var maxCallers = 4;
 
     $scope.brushColor = '#41a8c7';
     $scope.brushSize = 5;
@@ -46,19 +46,36 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
 
     function gotData(who, msgType, data) {
-        console.log('got data from ' + who, msgType, data);
+        //console.log('got data from ' + who, msgType, data);
         canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
     }
 
 
     easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
-        var video = document.getElementById("clientVideo");
-        easyrtc.setVideoObjectSrc(video, stream);
+        for(var i = 0; i < 3; i++) {
+            var video = document.getElementById("clientVideo" + i);
+            if(video.hidden){
+                easyrtc.setVideoObjectSrc(video, stream);
+                video.id = callerEasyrtcid;
+
+                break;
+            }
+        }
     });
 
     easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
-        easyrtc.setVideoObjectSrc(document.getElementById('caller'), "");
+        var video = document.getElementById(callerEasyrtcid);
+        easyrtc.setVideoObjectSrc(video, "");
+        video.hidden = true;
+        console.log('stream closed ' + callerEasyrtcid);
     });
+
+
+    easyrtc.setDisconnectListener(function(){
+       console.log('disconnected ');
+    });
+
+
 
     //REF:https://easyrtc.com/docs/guides/easyrtc_client_tutorial.php
     function roomListener(roomName, otherPeople) {
@@ -78,14 +95,14 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
             function callSuccess() {
                 connectCount++;
-                if (connectCount < maxCALLERS && position > 0) {
+                if (connectCount < maxCallers && position > 0) {
                     establishConnection(position - 1);
                 }
             }
 
             function callFailure(errorCode, errorText) {
                 easyrtc.showError(errorCode, errorText);
-                if (connectCount < maxCALLERS && position > 0) {
+                if (connectCount < maxCallers && position > 0) {
                     establishConnection(position - 1);
                 }
             }
