@@ -52,12 +52,14 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
 
     easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
-        for(var i = 0; i < 3; i++) {
-            var video = document.getElementById("clientVideo" + i);
-            if(video.hidden){
-                easyrtc.setVideoObjectSrc(video, stream);
-                video.id = callerEasyrtcid;
+        var videoElements = angular.element(document.querySelector('#videoStreams')).children();
 
+        for(var i = 1; i < 4; i++) {
+            var thisVideo = videoElements.find('video')[i];
+
+            if(thisVideo.id === "") {
+                thisVideo.id = callerEasyrtcid;
+                easyrtc.setVideoObjectSrc(thisVideo, stream);
                 break;
             }
         }
@@ -66,8 +68,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
     easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
         var video = document.getElementById(callerEasyrtcid);
         easyrtc.setVideoObjectSrc(video, "");
-        video.hidden = true;
-        console.log('stream closed ' + callerEasyrtcid);
+        video.id = "";
     });
 
 
