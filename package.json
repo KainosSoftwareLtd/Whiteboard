@@ -8,7 +8,6 @@
   "dependencies": {
     "angular": "^1.4.8",
     "angular-route": "^1.4.8",
-    "angularjs-color-picker": "^0.8.1",
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",

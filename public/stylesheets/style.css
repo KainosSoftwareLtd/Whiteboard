@@ -1,3 +1,19 @@
 button#btn_go {
     width: 150px;
 }
+
+.colour-picker {
+    height: 35px;
+    margin-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: white;
+    border-color: #cccccc;
+    border-radius: 4px;
+}
+
+.container{
+    max-width: none !important; width: 1140px;
+}

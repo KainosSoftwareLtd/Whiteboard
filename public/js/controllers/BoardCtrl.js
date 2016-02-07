@@ -1,8 +1,8 @@
-angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope', '$location', function ($scope, $location) {
+angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', function ($scope, $location) {
 
 
     var roomId = $location.path().split(/[\s/]+/).pop();
-    var maxCALLERS = 4;
+    var maxCallers = 4;
 
     $scope.brushColor = '#41a8c7';
     $scope.brushSize = 5;
@@ -46,19 +46,37 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
 
 
     function gotData(who, msgType, data) {
-        console.log('got data from ' + who, msgType, data);
+        //console.log('got data from ' + who, msgType, data);
         canvas.loadFromJSON(data, canvas.renderAll.bind(canvas));
     }
 
 
     easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
-        var video = document.getElementById("clientVideo");
-        easyrtc.setVideoObjectSrc(video, stream);
+        var videoElements = angular.element(document.querySelector('#videoStreams')).children();
+
+        for(var i = 1; i < 4; i++) {
+            var thisVideo = videoElements.find('video')[i];
+
+            if(thisVideo.id === "") {
+                thisVideo.id = callerEasyrtcid;
+                easyrtc.setVideoObjectSrc(thisVideo, stream);
+                break;
+            }
+        }
     });
 
     easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
-        easyrtc.setVideoObjectSrc(document.getElementById('caller'), "");
+        var video = document.getElementById(callerEasyrtcid);
+        easyrtc.setVideoObjectSrc(video, "");
+        video.id = "";
     });
+
+
+    easyrtc.setDisconnectListener(function(){
+       console.log('disconnected ');
+    });
+
+
 
     //REF:https://easyrtc.com/docs/guides/easyrtc_client_tutorial.php
     function roomListener(roomName, otherPeople) {
@@ -78,14 +96,14 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
 
             function callSuccess() {
                 connectCount++;
-                if (connectCount < maxCALLERS && position > 0) {
+                if (connectCount < maxCallers && position > 0) {
                     establishConnection(position - 1);
                 }
             }
 
             function callFailure(errorCode, errorText) {
                 easyrtc.showError(errorCode, errorText);
-                if (connectCount < maxCALLERS && position > 0) {
+                if (connectCount < maxCallers && position > 0) {
                     establishConnection(position - 1);
                 }
             }
@@ -100,8 +118,8 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
 
     function initCanvas() {
         var canvas = this.__canvas = new fabric.Canvas('c', {
-            width: 1000,
-            height: 1000
+            width: 1100,
+            height: 600
         });
 
         canvas.freeDrawingBrush.width = $scope.brushSize;
@@ -153,8 +171,8 @@ angular.module('BoardCtrl', ['color.picker']).controller('BoardCtrl', ['$scope',
         sendData();
     };
 
-    $scope.onColorChange = function ($event, color) {
-        canvas.freeDrawingBrush.color = color;
+    $scope.onColorChange = function () {
+        canvas.freeDrawingBrush.color = $scope.brushColor;
     };
 
     $scope.changeBrushSize = function (direction) {
