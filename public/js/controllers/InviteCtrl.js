@@ -1,4 +1,4 @@
-angular.module('InviteCtrl', []).controller('InviteCtrl', ['$scope', '$http' , function($scope, $http) {
+angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope', '$http', function($scope, $http) {
 
     var randomRoomNumber = Math.floor(1000 + Math.random() * 9000);
 
@@ -32,6 +32,35 @@ angular.module('InviteCtrl', []).controller('InviteCtrl', ['$scope', '$http' , f
                 console.log('email failed ' + response);
             });
     };
+
+
+    //Calendar functions
+
+    $scope.today = function() {
+        $scope.date = new Date();
+    };
+
+    $scope.today();
+
+    $scope.cal = {
+        opened: false
+    };
+
+    $scope.openCalendar = function() {
+        $scope.cal.opened = true;
+    };
+
+
+    //Time functions
+
+    var myTime = new Date();
+    myTime.setHours(12);
+    myTime.setMinutes(00);
+
+    $scope.time = myTime;
+
+    $scope.hourStep = 1;
+    $scope.minuteStep = 15;
 
 
 

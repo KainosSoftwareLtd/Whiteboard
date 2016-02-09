@@ -1,20 +1,86 @@
-<div class="row" ng-controller="InviteCtrl">
-    <div class="col-md-12">
+<div ng-controller="InviteCtrl">
 
-        <input type="text" class="form-control" placeholder="search people" ng-model="search">
-        <table class="table table-bordered table-striped">
-            <thead>
-            <th></th>
-            <th>Name</th>
-            <th>Dept.</th>
-            <th></th>
-            </thead>
-            <tr ng-repeat="person in mockTableData | filter:search">
-                <td><img src="{[{person.userImage}]}"></td>
-                <td>{[{person.name}]}</td>
-                <td>{[{person.department}]}</td>
-                <td><button type="button" class="btn btn-primary" ng-click="sendInvite()" >Add</button></td>
-            </tr>
-        </table>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-xs-6">
+                <img src="http://placehold.it/150x150">
+            </div>
+            <div class="col-xs-6">
+                <p>sdsdgsd</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-xs-6">
+                <img src="http://placehold.it/150x150">
+            </div>
+            <div class="col-xs-6">
+                <p>sdsdgsd</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-xs-6">
+                <img src="http://placehold.it/150x150">
+            </div>
+            <div class="col-xs-6">
+                <p>sdsdgsd</p>
+            </div>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Room number</h1>
+            <br>
+
+            <h1 class="text-center">2345</h1>
+        </div>
+    </div>
+    <h4>Meeting date & time</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <p class="input-group" id="date-input">
+                <input type="text" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="date" is-open="cal.opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="openCalendar()"><i class="glyphicon glyphicon-calendar"></i></button></span>
+            </p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <uib-timepicker ng-model="time" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="search people" ng-model="search">
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary">Send invitation</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                <th></th>
+                <th>Name</th>
+                <th>Dept.</th>
+                <th></th>
+                </thead>
+                <tr ng-repeat="person in mockTableData | filter:search">
+                    <td><img src="{[{person.userImage}]}"></td>
+                    <td>{[{person.name}]}</td>
+                    <td>{[{person.department}]}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="sendInvite()">Add</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>
