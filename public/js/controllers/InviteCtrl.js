@@ -1,6 +1,8 @@
 angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope', '$http', function($scope, $http) {
 
-    var randomRoomNumber = Math.floor(1000 + Math.random() * 9000);
+    $scope.randomRoomNumber = Math.floor(1000 + Math.random() * 9000);
+    $scope.invitees = [];
+    $scope.search = '';
 
     $scope.mockTableData =
         [
@@ -25,12 +27,43 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
 
     $scope.sendInvite = function() {
-        $http.post('/invite', { roomNumber: randomRoomNumber})
+        $http.post('/invite',
+            {
+                roomNumber: $scope.randomRoomNumber,
+                invitees: $scope.invitees,
+                time: $scope.time,
+                date: $scope.date
+
+            })
             .then(function success(response){
                 console.log('email sent ' + response.data);
             }, function failure(response){
                 console.log('email failed ' + response);
             });
+    };
+
+    function clearInvitees(){
+        $scope.invitees = [];
+    }
+
+
+    $scope.add = function(invitee) {
+        var i = angular.toJson(invitee);
+        if($scope.invitees.length < 3){
+            $scope.invitees.push(JSON.parse(i));
+        }
+    };
+
+    $scope.remove = function(invitee) {
+        for(var i = 0; i < $scope.invitees.length; i++) {
+            if($scope.invitees[i].name === invitee.name){
+                $scope.invitees.splice(i,1);
+            }
+        }
+    };
+
+    $scope.clearSearch = function() {
+        $scope.search = '';
     };
 
 
@@ -57,7 +90,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
     myTime.setHours(12);
     myTime.setMinutes(00);
 
-    $scope.time = myTime;
+    $scope.time = myTime.getTime();
 
     $scope.hourStep = 1;
     $scope.minuteStep = 15;
