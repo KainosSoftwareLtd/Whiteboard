@@ -8,18 +8,21 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
     $scope.mockTableData =
         [
             {
+                id: 1,
                 userImage: ***REMOVED***
                 name: ***REMOVED***
                 department: 'DEFRA'
             },
 
             {
+                id: 2,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***
             },
 
             {
+                id: 3,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***
@@ -42,26 +45,36 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 console.log('email failed ' + response);
             });
     };
-
-    function clearInvitees(){
-        $scope.invitees = [];
-    }
-
-
-    $scope.add = function(invitee) {
-        var i = angular.toJson(invitee);
+    
+    $scope.addUserToInviteesList = function(user) {
+        var i = angular.toJson(user);
         if($scope.invitees.length < MAX_INVITEES){
+            removeUserFromTable(user.id);
             $scope.invitees.push(JSON.parse(i));
         }
     };
 
-    $scope.remove = function(invitee) {
+    function removeUserFromTable(id) {
+        for(var i = 0; i < $scope.mockTableData.length; i++){
+            if($scope.mockTableData[i].id === id){
+                $scope.mockTableData.splice(i,1);
+            }
+        }
+    }
+
+
+    $scope.removeUserFromInviteesList = function(user) {
         for(var i = 0; i < $scope.invitees.length; i++) {
-            if($scope.invitees[i].name === invitee.name){
+            if($scope.invitees[i].name === user.name){
                 $scope.invitees.splice(i,1);
+                addUserToTable(user);
             }
         }
     };
+
+    function addUserToTable(user) {
+        $scope.mockTableData.push(user);
+    }
 
     $scope.clearSearch = function() {
         $scope.search = '';

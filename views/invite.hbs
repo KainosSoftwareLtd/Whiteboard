@@ -5,7 +5,7 @@
         <div class="col-md-3" ng-repeat="invitee in invitees">
            <img src="{[{invitee.userImage}]}">
            <p><b>{[{invitee.name}]} </b>  - {[{invitee.department}]}</p>
-            <button type="button" class="btn btn-danger" ng-click="remove(invitee)">Remove</button>
+            <button type="button" class="btn btn-danger" ng-click="removeUserFromInviteesList(invitee)">Remove</button>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
                     <td>{[{person.name}]}</td>
                     <td>{[{person.department}]}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" ng-click="add(person)">Add</button>
+                        <button type="button" class="btn btn-primary" ng-click="addUserToInviteesList(person)">Add</button>
                     </td>
                 </tr>
             </table>
