@@ -1,5 +1,6 @@
 angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope', '$http', function($scope, $http) {
 
+    var MAX_INVITEES = 4;
     $scope.randomRoomNumber = Math.floor(1000 + Math.random() * 9000);
     $scope.invitees = [];
     $scope.search = '';
@@ -49,7 +50,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
     $scope.add = function(invitee) {
         var i = angular.toJson(invitee);
-        if($scope.invitees.length < 3){
+        if($scope.invitees.length < MAX_INVITEES){
             $scope.invitees.push(JSON.parse(i));
         }
     };

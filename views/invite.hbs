@@ -2,17 +2,10 @@
 
     <!--User added-->
     <div class="row">
-        <div class="col-md-4" ng-repeat="invitee in invitees">
-            <div class="col-xs-6">
-                <img src="{[{invitee.userImage}]}">
-            </div>
-            <div class="col-xs-6">
-                <ul>
-                    <li>{[{invitee.name}]}</li>
-                    <li>{[{invitee.department}]}</li>
-                </ul>
-                <button type="button" class="btn btn-danger" ng-click="remove(invitee)">Remove</button>
-            </div>
+        <div class="col-md-3" ng-repeat="invitee in invitees">
+           <img src="{[{invitee.userImage}]}">
+           <p><b>{[{invitee.name}]} </b>  - {[{invitee.department}]}</p>
+            <button type="button" class="btn btn-danger" ng-click="remove(invitee)">Remove</button>
         </div>
     </div>
 
