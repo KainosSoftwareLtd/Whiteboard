@@ -26,6 +26,27 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***
+            },
+
+            {
+                id: 4,
+                userImage: ***REMOVED***
+                name: ***REMOVED***,
+                department: ***REMOVED***
+            },
+
+            {
+                id: 5,
+                userImage: ***REMOVED***
+                name: ***REMOVED***,
+                department: ***REMOVED***
+            },
+
+            {
+                id: 6,
+                userImage: ***REMOVED***
+                name: ***REMOVED***,
+                department: ***REMOVED***
             }
         ];
 
@@ -45,7 +66,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 console.log('email failed ' + response);
             });
     };
-    
+
     $scope.addUserToInviteesList = function(user) {
         var i = angular.toJson(user);
         if($scope.invitees.length < MAX_INVITEES){
