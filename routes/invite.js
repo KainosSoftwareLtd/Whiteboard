@@ -18,6 +18,7 @@ router.post('/', function (req, res, next) {
     var link = "<a href=/" + hostName + "/board/" + roomNumber + "/>here</a>";
     var startDate = req.body.date;
     var endDate = req.body.endTime;
+    var inviteeEmailAddresses = req.body.emailAddresses;
 
 
     var cal = ical();
@@ -34,7 +35,7 @@ router.post('/', function (req, res, next) {
 
     var mailOptions = {
         from: 'Whiteboard Mailer <whiteboardmailler@gmail.com>',
-        to: 'Michael Kemp, ***REMOVED***', // list of receivers
+        to: inviteeEmailAddresses, // list of receivers
         subject: 'Whiteboard Meeting Request',
         attachments: [
             {
@@ -47,13 +48,13 @@ router.post('/', function (req, res, next) {
         html: "<b>Please join my meeting at room number " + roomNumber +  " you can do this by visiting the Whiteboard Room in your office and entering the room number or from your desktop by clicking the following link " + link + "<\/b>"
     };
 
-    //transporter.sendMail(mailOptions, function(error, info){
-    //    if(error){
-    //        res.status(500).send(error);
-    //    }
-    //    console.log('Message sent: ' + info.response);
-    //    res.status(200).send('invite sent');
-    //});
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            res.status(500).send(error);
+        }
+        console.log('Message sent: ' + info.response);
+        res.status(200).send('invite sent');
+    });
 
 });
 
