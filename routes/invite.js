@@ -16,8 +16,8 @@ router.post('/', function (req, res, next) {
     var hostName = req.headers.host;
     var roomNumber = req.body.roomNumber;
     var link = "<a href=/" + hostName + "/board/" + roomNumber + "/>here</a>";
-    var startDate = new Date();
-    var endDate = new Date(new Date().getTime() + 3600000);
+    var startDate = req.body.date;
+    var endDate = req.body.endTime;
 
 
     var cal = ical();

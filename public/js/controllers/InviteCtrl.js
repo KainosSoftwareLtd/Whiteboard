@@ -52,11 +52,11 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
 
     $scope.sendInvite = function() {
+        compileStartDate();
         $http.post('/invite',
             {
                 roomNumber: $scope.randomRoomNumber,
                 invitees: $scope.invitees,
-                startTime: $scope.startTime,
                 endTime: $scope.endTime,
                 date: $scope.date
 
@@ -67,6 +67,10 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 console.log('email failed ' + response);
             });
     };
+
+    function compileStartDate(){
+        return $scope.date.setTime($scope.startTime);
+    }
 
     $scope.addUserToInviteesList = function(user) {
         var i = angular.toJson(user);
