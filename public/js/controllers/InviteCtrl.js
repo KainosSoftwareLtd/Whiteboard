@@ -56,7 +56,8 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
             {
                 roomNumber: $scope.randomRoomNumber,
                 invitees: $scope.invitees,
-                time: $scope.time,
+                startTime: $scope.startTime,
+                endTime: $scope.endTime,
                 date: $scope.date
 
             })
@@ -108,6 +109,8 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
         $scope.date = new Date();
     };
 
+    $scope.minDate = $scope.minDate ? null : new Date();
+
     $scope.today();
 
     $scope.cal = {
@@ -121,15 +124,37 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
     //Time functions
 
-    var myTime = new Date();
-    myTime.setHours(12);
-    myTime.setMinutes(00);
+    var myStartTime = new Date();
+    myStartTime.setHours(12);
+    myStartTime.setMinutes(0);
+    myStartTime.setSeconds(0);
+    myStartTime.setMilliseconds(0);
 
-    $scope.time = myTime.getTime();
+    var myEndTime = new Date();
+    myEndTime.setHours(12);
+    myEndTime.setMinutes(15);
+    myEndTime.setSeconds(0);
+    myEndTime.setMilliseconds(0);
+
+    $scope.startTime = myStartTime;
+    $scope.endTime = myEndTime;
 
     $scope.hourStep = 1;
     $scope.minuteStep = 15;
 
 
+    //Stop users entering an end time that is before the start time
+    $scope.changed = function() {
+        if($scope.endTime <= $scope.startTime){
+            var d = new Date();
+
+            d.setHours($scope.startTime.getHours());
+            d.setMinutes($scope.startTime.getMinutes() + 15);
+            d.setSeconds(0);
+            d.setMilliseconds(0);
+
+            $scope.endTime = d;
+        }
+    }
 
 }]);
