@@ -1,20 +1,113 @@
-<div class="row" ng-controller="InviteCtrl">
-    <div class="col-md-12">
+<div ng-controller="InviteCtrl">
 
-        <input type="text" class="form-control" placeholder="search people" ng-model="search">
-        <table class="table table-bordered table-striped">
-            <thead>
-            <th></th>
-            <th>Name</th>
-            <th>Dept.</th>
-            <th></th>
-            </thead>
-            <tr ng-repeat="person in mockTableData | filter:search">
-                <td><img src="{[{person.userImage}]}"></td>
-                <td>{[{person.name}]}</td>
-                <td>{[{person.department}]}</td>
-                <td><button type="button" class="btn btn-primary" ng-click="sendInvite()" >Add</button></td>
-            </tr>
-        </table>
+    <!--User added-->
+    <div class="row">
+        <div class="col-md-3" ng-repeat="invitee in invitees">
+           <img src="{[{invitee.userImage}]}">
+           <p><b>{[{invitee.name}]} </b>  - {[{invitee.department}]}</p>
+            <button type="button" class="btn btn-danger" ng-click="removeUserFromInviteesList(invitee)">Remove</button>
+        </div>
     </div>
+
+    <!--Room number-->
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Room number</h1>
+            <br>
+
+            <h1 class="text-center">{[{randomRoomNumber}]}</h1>
+        </div>
+    </div>
+
+    <!--Meeting date and time heading-->
+    <div class="row">
+        <div class="col-md-12">
+            <legend>
+                <h4>Meeting date & time</h4>
+            </legend>
+        </div>
+    </div>
+
+    <!--Date picker-->
+    <div class="row">
+        <div class="col-md-4">
+            <p class="input-group" id="date-input">
+                <input type="text" class="form-control" min-date="minDate" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="date" is-open="cal.opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="openCalendar()"><i class="glyphicon glyphicon-calendar"></i></button></span>
+            </p>
+
+        </div>
+    </div>
+
+    <!--Time picker-->
+    <!--REF:https://jsfiddle.net/buneg6sp/-->
+    <div class="row">
+        <div class="col-md-3">
+            <table style="vertical-align: middle">
+                <tr>
+                    <td class="time-text">Start Time:</td>
+                    <td>
+                        <uib-timepicker ng-model="startTime" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-3">
+            <table style="vertical-align: middle">
+                <tr>
+                    <td class="time-text">End Time:</td>
+                    <td>
+                        <uib-timepicker ng-model="endTime" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--Search heading-->
+    <div class="row">
+        <div class="col-md-12">
+            <legend>
+                <h4>Search people</h4>
+            </legend>
+        </div>
+    </div>
+
+    <!--Search input and buttons-->
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="search people" ng-model="search">
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" ng-click="sendInvite()">Send invitation</button>
+            <button type="button" class="btn btn-default" ng-click="clearSearch()">Clear</button>
+        </div>
+    </div>
+
+    <br>
+
+    <!--User table-->
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                <th></th>
+                <th>Name</th>
+                <th>Dept.</th>
+                <th></th>
+                </thead>
+                <tr ng-repeat="person in mockTableData | filter:search">
+                    <td><img src='{[{person.userImage}]}'></td>
+                    <td>{[{person.name}]}</td>
+                    <td>{[{person.department}]}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="addUserToInviteesList(person)">Add</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>

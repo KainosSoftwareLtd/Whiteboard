@@ -17,3 +17,8 @@ button#btn_go {
 .container{
     max-width: none !important; width: 1140px;
 }
+
+.time-text {
+    padding-right: 5px;
+    font-weight: bold;
+}
