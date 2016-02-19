@@ -47,13 +47,13 @@ router.post('/', function (req, res, next) {
         html: "<b>Please join my meeting at room number " + roomNumber +  " you can do this by visiting the Whiteboard Room in your office and entering the room number or from your desktop by clicking the following link " + link + "<\/b>"
     };
 
-    //transporter.sendMail(mailOptions, function(error, info){
-    //    if(error){
-    //        res.status(500).send(error);
-    //    }
-    //    console.log('Message sent: ' + info.response);
-    //    res.status(200).send('invite sent');
-    //});
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            res.status(500).send(error);
+        }
+        console.log('Message sent: ' + info.response);
+        res.status(200).send('invite sent');
+    });
 
 });
 
