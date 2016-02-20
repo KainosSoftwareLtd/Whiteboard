@@ -16,8 +16,9 @@ router.post('/', function (req, res, next) {
     var hostName = req.headers.host;
     var roomNumber = req.body.roomNumber;
     var link = "<a href=/" + hostName + "/board/" + roomNumber + "/>here</a>";
-    var startDate = new Date();
-    var endDate = new Date(new Date().getTime() + 3600000);
+    var startDate = req.body.date;
+    var endDate = req.body.endTime;
+    var inviteeEmailAddresses = req.body.emailAddresses;
 
 
     var cal = ical();
@@ -34,7 +35,7 @@ router.post('/', function (req, res, next) {
 
     var mailOptions = {
         from: 'Whiteboard Mailer <whiteboardmailler@gmail.com>',
-        to: 'Michael Kemp, ***REMOVED***', // list of receivers
+        to: inviteeEmailAddresses, // list of receivers
         subject: 'Whiteboard Meeting Request',
         attachments: [
             {

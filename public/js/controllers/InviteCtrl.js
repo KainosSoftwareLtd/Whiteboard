@@ -11,55 +11,61 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 id: 1,
                 userImage: ***REMOVED***
                 name: ***REMOVED***
-                department: 'DEFRA'
+                department: ***REMOVED***
+                email: '***REMOVED***'
             },
 
             {
                 id: 2,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
-                department: ***REMOVED***
+                department: ***REMOVED***,
+                email: '***REMOVED***'
             },
 
             {
                 id: 3,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
-                department: ***REMOVED***
+                department: ***REMOVED***,
+                email: '***REMOVED***'
             },
 
             {
                 id: 4,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
-                department: ***REMOVED***
+                department: ***REMOVED***,
+                email: '***REMOVED***'
             },
 
             {
                 id: 5,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
-                department: ***REMOVED***
+                department: ***REMOVED***,
+                email: '***REMOVED***'
             },
 
             {
                 id: 6,
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
-                department: ***REMOVED***
+                department: ***REMOVED***,
+                email: '***REMOVED***'
             }
         ];
 
 
     $scope.sendInvite = function() {
+        compileStartDate();
         $http.post('/invite',
             {
                 roomNumber: $scope.randomRoomNumber,
                 invitees: $scope.invitees,
-                startTime: $scope.startTime,
+                emailAddresses: getInviteesEmailAddresses(),
                 endTime: $scope.endTime,
                 date: $scope.date
-
             })
             .then(function success(response){
                 console.log('email sent ' + response.data);
@@ -67,6 +73,21 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 console.log('email failed ' + response);
             });
     };
+
+    function compileStartDate(){
+        return $scope.date.setTime($scope.startTime.getTime());
+    }
+
+    function getInviteesEmailAddresses(){
+        var emailAddresses = [];
+
+        for(var i = 0; i < $scope.invitees.length; i++){
+            emailAddresses.push($scope.invitees[i].email)
+        }
+
+        return emailAddresses;
+    }
+
 
     $scope.addUserToInviteesList = function(user) {
         var i = angular.toJson(user);
