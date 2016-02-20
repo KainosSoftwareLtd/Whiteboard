@@ -16,8 +16,8 @@ router.post('/', function (req, res, next) {
     var hostName = req.headers.host;
     var roomNumber = req.body.roomNumber;
     var link = "<a href=/" + hostName + "/board/" + roomNumber + "/>here</a>";
-    var startDate = req.body.date;
-    var endDate = req.body.endTime;
+    var startDate = req.body.startDate;
+    var endDate = req.body.endDate;
     var inviteeEmailAddresses = req.body.emailAddresses;
 
 
