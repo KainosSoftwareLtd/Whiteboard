@@ -1,5 +1,13 @@
 <div ng-controller="InviteCtrl">
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fade in">
+                <uib-alert ng-repeat="alert in alerts" dismiss-on-timeout="8000" type="{[{alert.type}]}" close="closeAlert($index)">{[{alert.msg}]}</uib-alert>
+            </div>
+        </div>
+    </div>
+
     <!--User added-->
     <div class="row">
         <div class="col-md-3" ng-repeat="invitee in invitees">
@@ -32,7 +40,7 @@
     <div class="row">
         <div class="col-md-4">
             <p class="input-group" id="date-input">
-                <input type="text" class="form-control" min-date="minDate" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="date" is-open="cal.opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <input type="text" class="form-control" min-date="minDate" uib-datepicker-popup="dd-MMMM-yyyy" ng-change="dateChanged()" ng-model="startDate" is-open="cal.opened" datepicker-options="dateOptions" date-disabled="disabled(startDate, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                 <span class="input-group-btn"><button type="button" class="btn btn-default" ng-click="openCalendar()"><i class="glyphicon glyphicon-calendar"></i></button></span>
             </p>
 
@@ -47,7 +55,7 @@
                 <tr>
                     <td class="time-text">Start Time:</td>
                     <td>
-                        <uib-timepicker ng-model="startTime" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
+                        <uib-timepicker ng-model="startDate" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
                     </td>
                 </tr>
             </table>
@@ -58,7 +66,7 @@
                 <tr>
                     <td class="time-text">End Time:</td>
                     <td>
-                        <uib-timepicker ng-model="endTime" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
+                        <uib-timepicker ng-model="endDate" ng-change="changed()" hour-step="hourStep" minute-step="minuteStep" show-meridian="false"></uib-timepicker>
                     </td>
                 </tr>
             </table>

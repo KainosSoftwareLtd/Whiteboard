@@ -4,6 +4,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
     $scope.randomRoomNumber = Math.floor(1000 + Math.random() * 9000);
     $scope.invitees = [];
     $scope.search = '';
+    $scope.alerts = [];
 
     $scope.mockTableData =
         [
@@ -58,25 +59,31 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
 
     $scope.sendInvite = function() {
-        compileStartDate();
-        $http.post('/invite',
-            {
-                roomNumber: $scope.randomRoomNumber,
-                invitees: $scope.invitees,
-                emailAddresses: getInviteesEmailAddresses(),
-                endTime: $scope.endTime,
-                date: $scope.date
-            })
-            .then(function success(response){
-                console.log('email sent ' + response.data);
-            }, function failure(response){
-                console.log('email failed ' + response);
-            });
+        if(isInviteesEmpty()){
+            addAlert('danger', 'You need to add at least 1 user');
+        } else {
+            $http.post('/invite',
+                {
+                    roomNumber: $scope.randomRoomNumber,
+                    invitees: $scope.invitees,
+                    emailAddresses: getInviteesEmailAddresses(),
+                    startDate: $scope.startDate,
+                    endDate: $scope.endDate
+                })
+                .then(function success(response){
+                    addAlert('success', 'Your invite has been sent successfully');
+                    console.log('email sent ' + response.data);
+                }, function failure(response){
+                    addAlert('Danger', 'Something went wrong, Please try again');
+                    console.log('email failed ' + response);
+                });
+        }
     };
 
-    function compileStartDate(){
-        return $scope.date.setTime($scope.startTime.getTime());
+    function isInviteesEmpty(){
+        return $scope.invitees <= 0;
     }
+
 
     function getInviteesEmailAddresses(){
         var emailAddresses = [];
@@ -127,7 +134,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
     //Calendar functions
 
     $scope.today = function() {
-        $scope.date = new Date();
+        $scope.startDate = new Date();
     };
 
     $scope.minDate = $scope.minDate ? null : new Date();
@@ -145,20 +152,16 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
     //Time functions
 
-    var myStartTime = new Date();
-    myStartTime.setHours(12);
-    myStartTime.setMinutes(0);
-    myStartTime.setSeconds(0);
-    myStartTime.setMilliseconds(0);
+    $scope.startDate.setHours(12);
+    $scope.startDate.setMinutes(0);
+    $scope.startDate.setSeconds(0);
+    $scope.startDate.setMilliseconds(0);
 
-    var myEndTime = new Date();
-    myEndTime.setHours(12);
-    myEndTime.setMinutes(15);
-    myEndTime.setSeconds(0);
-    myEndTime.setMilliseconds(0);
 
-    $scope.startTime = myStartTime;
-    $scope.endTime = myEndTime;
+    $scope.endDate = new Date();
+    $scope.endDate.setTime($scope.startDate.getTime());
+    $scope.endDate.setMinutes(15);
+
 
     $scope.hourStep = 1;
     $scope.minuteStep = 15;
@@ -166,16 +169,35 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
     //Stop users entering an end time that is before the start time
     $scope.changed = function() {
-        if($scope.endTime <= $scope.startTime){
+        if($scope.endDate <= $scope.startDate){
             var d = new Date();
 
-            d.setHours($scope.startTime.getHours());
-            d.setMinutes($scope.startTime.getMinutes() + 15);
+            d.setDate($scope.startDate.getDate());
+            d.setHours($scope.startDate.getHours());
+
             d.setSeconds(0);
             d.setMilliseconds(0);
 
-            $scope.endTime = d;
+            d.setTime($scope.startDate.getTime());
+            d.setMinutes($scope.startDate.getMinutes() + 15);
+
+            $scope.endDate = d;
+
         }
-    }
+    };
+
+    $scope.dateChanged = function() {
+        $scope.endDate.setTime($scope.startDate.getTime());
+    };
+
+    //Uialert functions
+
+    function addAlert(type, message) {
+        $scope.alerts.push({type:type, msg: message});
+    };
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 
 }]);
