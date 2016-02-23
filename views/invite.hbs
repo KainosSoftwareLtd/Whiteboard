@@ -1,5 +1,13 @@
 <div ng-controller="InviteCtrl">
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fade in">
+                <uib-alert ng-repeat="alert in alerts" dismiss-on-timeout="8000" type="{[{alert.type}]}" close="closeAlert($index)">{[{alert.msg}]}</uib-alert>
+            </div>
+        </div>
+    </div>
+
     <!--User added-->
     <div class="row">
         <div class="col-md-3" ng-repeat="invitee in invitees">

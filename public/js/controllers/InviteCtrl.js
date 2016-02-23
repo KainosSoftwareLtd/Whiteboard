@@ -4,6 +4,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
     $scope.randomRoomNumber = Math.floor(1000 + Math.random() * 9000);
     $scope.invitees = [];
     $scope.search = '';
+    $scope.alerts = [];
 
     $scope.mockTableData =
         [
@@ -58,20 +59,30 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
 
     $scope.sendInvite = function() {
-        $http.post('/invite',
-            {
-                roomNumber: $scope.randomRoomNumber,
-                invitees: $scope.invitees,
-                emailAddresses: getInviteesEmailAddresses(),
-                startDate: $scope.startDate,
-                endDate: $scope.endDate
-            })
-            .then(function success(response){
-                console.log('email sent ' + response.data);
-            }, function failure(response){
-                console.log('email failed ' + response);
-            });
+        if(isInviteesEmpty()){
+            addAlert('danger', 'You need to add at least 1 user');
+        } else {
+            $http.post('/invite',
+                {
+                    roomNumber: $scope.randomRoomNumber,
+                    invitees: $scope.invitees,
+                    emailAddresses: getInviteesEmailAddresses(),
+                    startDate: $scope.startDate,
+                    endDate: $scope.endDate
+                })
+                .then(function success(response){
+                    addAlert('success', 'Your invite has been sent successfully');
+                    console.log('email sent ' + response.data);
+                }, function failure(response){
+                    addAlert('Danger', 'Something went wrong, Please try again');
+                    console.log('email failed ' + response);
+                });
+        }
     };
+
+    function isInviteesEmpty(){
+        return $scope.invitees <= 0;
+    }
 
 
     function getInviteesEmailAddresses(){
@@ -177,6 +188,16 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
     $scope.dateChanged = function() {
         $scope.endDate.setTime($scope.startDate.getTime());
+    };
+
+    //Uialert functions
+
+    function addAlert(type, message) {
+        $scope.alerts.push({type:type, msg: message});
+    };
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
     };
 
 }]);
