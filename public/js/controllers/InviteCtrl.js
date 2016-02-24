@@ -194,7 +194,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
     function addAlert(type, message) {
         $scope.alerts.push({type:type, msg: message});
-    };
+    }
 
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
