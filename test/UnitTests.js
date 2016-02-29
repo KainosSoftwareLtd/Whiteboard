@@ -154,7 +154,7 @@ describe('Invite Controller', function () {
 
         describe('Invite sending tests', function(){
 
-            it('Should call the /invite POST request', function(){
+            it('Should call the /invite POST request when invite sent', function(){
                 $scope.addUserToInviteesList(mockTableTestData[1]);
                 $httpBackend.whenPOST('/invite').respond(200);
 
@@ -163,6 +163,12 @@ describe('Invite Controller', function () {
                 $httpBackend.flush();
                 $httpBackend.verifyNoOutstandingExpectation();
                 $httpBackend.verifyNoOutstandingRequest();
+            });
+
+            it('Should give the user an error and when an attempt is made to send an invite with no users added',
+            function(){
+                $scope.sendInvite();
+                expect($scope.alerts[0]).toEqual({type:'danger', msg: 'You need to add at least 1 user'});
             });
 
         });
