@@ -20,7 +20,7 @@ module.exports = function (config) {
             'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
             'public/js/*',
             'public/js/controllers/*.js',
-            'test/UnitTests.js'
+            'test/*.js'
         ],
 
 

@@ -12,10 +12,6 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $wi
         $window.location.href = '/invite/';
     };
 
-    $scope.createNewMeeting = function() {
-
-    };
-
     $scope.addNumberToDisplay = function(num) {
 
         if($scope.inputField.length > 3){
