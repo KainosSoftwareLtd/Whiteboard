@@ -2,7 +2,7 @@ describe('Invite Controller', function () {
 
     beforeEach(module('InviteCtrl'));
 
-    var $controller;
+    var $controller, $httpBackend;
 
     var mockTableTestData =
         [
@@ -56,9 +56,10 @@ describe('Invite Controller', function () {
         ];
 
     //REF:https://docs.angularjs.org/guide/unit-testing
-    beforeEach(inject(function(_$controller_){
+    beforeEach(inject(function(_$controller_, $injector){
         // The injector unwraps the underscores (_) from around the parameter names when matching
         $controller = _$controller_;
+        $httpBackend = $injector.get('$httpBackend');
     }));
 
     describe('Invite Controller unit tests', function(){
@@ -81,7 +82,6 @@ describe('Invite Controller', function () {
 
             expect($scope.search).toBe('');
         });
-
 
         describe('Adding and removing of invitees', function(){
 
@@ -117,28 +117,55 @@ describe('Invite Controller', function () {
             });
 
         });
+        describe('Time and Date functions', function() {
+
+            it('Should set the end time to 15 minutes ahead of the start time', function(){
+                expect($scope.endDate.getMinutes()).toEqual($scope.startDate.getMinutes() + 15);
+            });
 
 
-        it('should..', function(){
+            it('$scope.changed should not allow an end time to be set before a start time', function(){
+                $scope.endDate = new Date();
+                $scope.startDate = new Date();
 
+                $scope.endDate.setTime($scope.startDate.getTime());
+                $scope.endDate.setHours($scope.startDate.getHours() - 2);
+
+                $scope.changed();
+
+                expect($scope.endDate).not.toBeLessThan($scope.startDate);
+
+            });
+
+            it('$scope.changed should set the end time to be 15 minutes ahead of the start time if the ' +
+                'end time is changed to 15 minutes within 15 minutes of the start time', function(){
+
+                $scope.endDate = new Date();
+                $scope.startDate = new Date();
+
+                $scope.endDate.setTime($scope.startDate.getTime());
+
+                $scope.changed();
+
+                expect($scope.endDate.getMinutes()).toEqual($scope.startDate.getMinutes() + 15);
+
+            });
         });
 
-        it('should..', function(){
+        describe('Invite sending tests', function(){
+
+            it('Should call the /invite POST request', function(){
+                $scope.addUserToInviteesList(mockTableTestData[1]);
+                $httpBackend.whenPOST('/invite').respond(200);
+
+                $scope.sendInvite();
+
+                $httpBackend.flush();
+                $httpBackend.verifyNoOutstandingExpectation();
+                $httpBackend.verifyNoOutstandingRequest();
+            });
 
         });
-
-        it('should..', function(){
-
-        });
-
-        it('should..', function(){
-
-        });
-
-        it('should..', function(){
-
-        });
-
     });
 
 });

@@ -74,7 +74,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                     addAlert('success', 'Your invite has been sent successfully');
                     console.log('email sent ' + response.data);
                 }, function failure(response){
-                    addAlert('Danger', 'Something went wrong, Please try again');
+                    addAlert('danger', 'Something went wrong, Please try again');
                     console.log('email failed ' + response);
                 });
         }
