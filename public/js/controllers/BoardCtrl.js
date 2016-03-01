@@ -159,7 +159,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         });
     }
 
-    $scope.useMoveTool = function () {
+    $scope.useMoveTool = function() {
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(true);
         canvas.isDrawingMode = false;
@@ -171,7 +171,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         sendData();
     };
 
-    $scope.onColorChange = function () {
+    $scope.onColorChange = function() {
         canvas.freeDrawingBrush.color = $scope.brushColor;
     };
 
@@ -185,12 +185,12 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         canvas.freeDrawingBrush.width =  $scope.brushSize;
     };
 
-    $scope.clearBoard = function () {
+    $scope.clearBoard = function() {
         canvas.clear();
         sendData();
     };
 
-    $scope.usePencilTool = function () {
+    $scope.usePencilTool = function() {
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(false);
         canvas.isDrawingMode = true;
@@ -199,7 +199,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         });
     };
 
-    $scope.useRectangleTool = function () {
+    $scope.useRectangleTool = function() {
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(false);
         canvas.isDrawingMode = false;
