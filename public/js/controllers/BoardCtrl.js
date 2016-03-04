@@ -17,24 +17,24 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         console.log("Initializing.");
 
         easyrtc.setRoomOccupantListener(roomListener);
-        var connectSuccess = function (myId) {
+        var connectSuccess = function(myId) {
             console.log("My easyrtcid is " + myId);
         };
 
         easyrtc.setPeerListener(gotData);
 
-        var connectFailure = function (errorCode, errText) {
+        var connectFailure = function(errorCode, errText) {
             console.log('connection error ' + errText);
         };
         easyrtc.initMediaSource(
-            function () {        // success callback
+            function() {        // success callback
                 var selfVideo = document.getElementById("myVideo");
                 easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
 
-                easyrtc.joinRoom(roomId, function (data) {
+                easyrtc.joinRoom(roomId, function(data) {
                         console.log('Successfuly connected to room ' + data)
                     },
-                    function (data) {
+                    function(data) {
                         console.log('Error connecting to room ' + data);
                     });
 
@@ -51,7 +51,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
     }
 
 
-    easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
+    easyrtc.setStreamAcceptor(function(callerEasyrtcid, stream) {
         var videoElements = angular.element(document.querySelector('#videoStreams')).children();
 
         for(var i = 1; i < 4; i++) {
@@ -65,7 +65,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         }
     });
 
-    easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
+    easyrtc.setOnStreamClosed(function(callerEasyrtcid) {
         var video = document.getElementById(callerEasyrtcid);
         easyrtc.setVideoObjectSrc(video, "");
         video.id = "";
@@ -125,7 +125,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         canvas.freeDrawingBrush.width = $scope.brushSize;
         canvas.freeDrawingBrush.color = $scope.brushColor;
 
-        canvas.on('object:modified', function () {
+        canvas.on('object:modified', function() {
             sendData();
         });
 
@@ -136,7 +136,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         var data = JSON.stringify(canvas.toDatalessJSON());
 
         try {
-            easyrtc.sendDataWS({'targetRoom': roomId}, 'canvasStuff', data, function (reply) {
+            easyrtc.sendDataWS({'targetRoom': roomId}, 'canvasStuff', data, function(reply) {
                 if (reply.msgType === "error") {
                     easyrtc.showError(reply.msgData.errorCode, reply.msgData.errorText);
                 }
@@ -154,7 +154,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
     function makeObjectsOnCanvasSelectable(isSelectable) {
         var shapes = canvas.getObjects();
-        shapes.forEach(function (object) {
+        shapes.forEach(function(object) {
             object.selectable = isSelectable;
         });
     }
@@ -175,7 +175,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         canvas.freeDrawingBrush.color = $scope.brushColor;
     };
 
-    $scope.changeBrushSize = function (direction) {
+    $scope.changeBrushSize = function(direction) {
         if(direction === '+') {
             $scope.brushSize += brushSizeStep;
         }
@@ -194,7 +194,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(false);
         canvas.isDrawingMode = true;
-        canvas.on('mouse:up', function () {
+        canvas.on('mouse:up', function() {
             sendData();
         });
     };
@@ -206,7 +206,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
         var startX, startY;
 
-        canvas.on('mouse:down', function (options) {
+        canvas.on('mouse:down', function(options) {
             startX = options.e.offsetX;
             startY = options.e.offsetY;
 
@@ -221,14 +221,14 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
                 selectable: false
             });
 
-            canvas.on('mouse:move', function (option) {
+            canvas.on('mouse:move', function(option) {
                 var e = option.e;
                 rectangle.set('width', e.offsetX - startX);
                 rectangle.set('height', e.offsetY - startY);
                 rectangle.setCoords();
             });
 
-            canvas.on('mouse:up', function (options) {
+            canvas.on('mouse:up', function(options) {
                 canvas.off('mouse:move');
                 canvas.off('mouse:up');
                 canvas.add(rectangle);

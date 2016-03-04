@@ -154,7 +154,7 @@ describe('Board Controller', function() {
     });
 
     it('$scope.usePencilTool() should remove all canvas event ' +
-        'listners, stop the objects on the canvas from being selectable, set the' +
+        'listeners, stop the objects on the canvas from being selectable, set the' +
         'canvas drawing mode to true and update all connect clients ', function(){
 
         spyOn(easyrtc, 'sendDataWS');
@@ -191,7 +191,39 @@ describe('Board Controller', function() {
         expect(easyrtc.sendDataWS).toHaveBeenCalled();
     });
 
+    describe('$scope.useRectangleTool', function(){
 
+        beforeEach(function(){
+            spyOn(__canvas, 'off');
+            spyOn(easyrtc, 'sendDataWS');
+            $scope.useRectangleTool();
+        });
 
+        it('Should remove all canvas event listeners', function(){
+            expect(__canvas.off).toHaveBeenCalledWith('mouse:up');
+            expect(__canvas.off).toHaveBeenCalledWith('mouse:down');
+            expect(__canvas.off).toHaveBeenCalledWith('mouse:move');
+        });
 
+        it('Should stop all objects on the canvas from being selectable', function(){
+            expect(__canvas.isDrawingMode).toBeFalsy();
+        });
+
+        it('Should draw a rectangle between two points and update all connected clients', function(){
+            var options = {};
+            options.e = {offsetX:20, offsetY: 30};
+
+            __canvas.fire('mouse:down', options);
+
+            var moveTo = {};
+            moveTo.e = {offsetX: 60, offsetY: 90};
+
+            __canvas.fire('mouse:move', moveTo);
+
+            __canvas.fire('mouse:up');
+            expect(__canvas._objects[0]).not.toBeUndefined();
+            expect(easyrtc.sendDataWS).toHaveBeenCalled();
+
+        });
+    });
 });

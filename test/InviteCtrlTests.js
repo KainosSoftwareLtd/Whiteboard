@@ -141,7 +141,11 @@ describe('Invite Controller', function () {
             'end time is changed to 15 minutes within 15 minutes of the start time', function(){
 
             $scope.endDate = new Date();
-            $scope.startDate = new Date();
+
+            $scope.startDate.setHours(12);
+            $scope.startDate.setMinutes(0);
+            $scope.startDate.setSeconds(0);
+            $scope.startDate.setMilliseconds(0);
 
             $scope.endDate.setTime($scope.startDate.getTime());
 
