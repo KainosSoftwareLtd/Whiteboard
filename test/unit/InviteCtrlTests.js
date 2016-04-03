@@ -99,7 +99,8 @@ describe('Invite Controller', function () {
 
         });
 
-        it('$scope.addUserToInviteesList() Should add the specified user to the invitee list and remove them from the table', function(){
+        it('$scope.addUserToInviteesList() Should add the specified user to the invitee list and remove them ' +
+            'from the table', function(){
             $scope.addUserToInviteesList(mockTableTestData[0]);
 
             expect($scope.invitees.length).toBe(1);
@@ -107,7 +108,8 @@ describe('Invite Controller', function () {
             expect($scope.mockTableData).not.toContain(mockTableTestData[0]);
         });
 
-        it('$scope.removeUserFromInviteesList() should remove the specified user from the invitee list and add them back to the table', function(){
+        it('$scope.removeUserFromInviteesList() should remove the specified user from the invitee list and add them ' +
+            'back to the table', function(){
             $scope.addUserToInviteesList = mockTableTestData[1];
 
             $scope.removeUserFromInviteesList(mockTableTestData[1]);

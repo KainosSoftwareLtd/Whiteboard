@@ -30,6 +30,7 @@
     "karma": "^0.13.21",
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.3",
-    "karma-jasmine": "^0.3.7"
+    "karma-jasmine": "^0.3.7",
+    "protractor": "^1.5.0"
   }
 }

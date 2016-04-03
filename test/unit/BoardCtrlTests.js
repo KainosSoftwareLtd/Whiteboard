@@ -23,12 +23,6 @@ describe('Board Controller', function() {
 
     });
 
-    it('Should ....', function(){
-        spyOn(easyrtc, 'sendDataWS');
-        $scope.undo();
-        expect(easyrtc.sendDataWS).toHaveBeenCalled();
-    });
-
     it('Should set up easyRTC when the controller is initialised', function(){
         expect(easyrtc.setStreamAcceptor).toHaveBeenCalled();
         expect(easyrtc.setPeerListener).toHaveBeenCalled();

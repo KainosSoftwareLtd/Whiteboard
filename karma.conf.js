@@ -22,7 +22,7 @@ module.exports = function (config) {
             'node_modules/easyrtc/api/easyrtc.js',
             'public/js/*',
             'public/js/controllers/*.js',
-            'test/*.js'
+            'test/unit/*.js'
         ],
 
 
