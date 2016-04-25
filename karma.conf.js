@@ -18,7 +18,7 @@ module.exports = function (config) {
             'node_modules/angular/angular.js',
             'node_modules/angular-mocks/angular-mocks.js',
             'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
-            'node_modules/fabric/dist/fabric.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js',
             'node_modules/easyrtc/api/easyrtc.js',
             'public/js/*',
             'public/js/controllers/*.js',
