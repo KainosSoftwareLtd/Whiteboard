@@ -18,24 +18,24 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         console.log("Initializing.");
 
         easyrtc.setRoomOccupantListener(roomListener);
-        var connectSuccess = function (myId) {
+        var connectSuccess = function(myId) {
             console.log("My easyrtcid is " + myId);
         };
 
         easyrtc.setPeerListener(gotData);
 
-        var connectFailure = function (errorCode, errText) {
+        var connectFailure = function(errorCode, errText) {
             console.log('connection error ' + errText);
         };
         easyrtc.initMediaSource(
-            function () {        // success callback
+            function() {        // success callback
                 var selfVideo = document.getElementById("myVideo");
                 easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
 
-                easyrtc.joinRoom(roomId, function (data) {
+                easyrtc.joinRoom(roomId, function(data) {
                         console.log('Successfuly connected to room ' + data)
                     },
-                    function (data) {
+                    function(data) {
                         console.log('Error connecting to room ' + data);
                     });
 
@@ -52,7 +52,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
     }
 
 
-    easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
+    easyrtc.setStreamAcceptor(function(callerEasyrtcid, stream) {
         var videoElements = angular.element(document.querySelector('#videoStreams')).children();
 
         for(var i = 1; i < 4; i++) {
@@ -66,7 +66,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         }
     });
 
-    easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
+    easyrtc.setOnStreamClosed(function(callerEasyrtcid) {
         var video = document.getElementById(callerEasyrtcid);
         easyrtc.setVideoObjectSrc(video, "");
         video.id = "";
@@ -141,7 +141,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         canvas.freeDrawingBrush.width = $scope.brushSize;
         canvas.freeDrawingBrush.color = $scope.brushColor;
 
-        canvas.on('object:modified', function () {
+        canvas.on('object:modified', function() {
             sendData();
         });
 
@@ -171,12 +171,12 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
     function makeObjectsOnCanvasSelectable(isSelectable) {
         var shapes = canvas.getObjects();
-        shapes.forEach(function (object) {
+        shapes.forEach(function(object) {
             object.selectable = isSelectable;
         });
     }
 
-    $scope.useMoveTool = function () {
+    $scope.useMoveTool = function() {
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(true);
         canvas.isDrawingMode = false;
@@ -188,11 +188,11 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         sendData();
     };
 
-    $scope.onColorChange = function () {
+    $scope.onColorChange = function() {
         canvas.freeDrawingBrush.color = $scope.brushColor;
     };
 
-    $scope.changeBrushSize = function (direction) {
+    $scope.changeBrushSize = function(direction) {
         if(direction === '+') {
             $scope.brushSize += brushSizeStep;
         }
@@ -202,28 +202,28 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         canvas.freeDrawingBrush.width =  $scope.brushSize;
     };
 
-    $scope.clearBoard = function () {
+    $scope.clearBoard = function() {
         canvas.clear();
         sendData();
     };
 
-    $scope.usePencilTool = function () {
+    $scope.usePencilTool = function() {
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(false);
         canvas.isDrawingMode = true;
-        canvas.on('mouse:up', function () {
+        canvas.on('mouse:up', function() {
             sendData();
         });
     };
 
-    $scope.useRectangleTool = function () {
+    $scope.useRectangleTool = function() {
         removeCanvasEventListners();
         makeObjectsOnCanvasSelectable(false);
         canvas.isDrawingMode = false;
 
         var startX, startY;
 
-        canvas.on('mouse:down', function (options) {
+        canvas.on('mouse:down', function(options) {
             startX = options.e.offsetX;
             startY = options.e.offsetY;
 
@@ -238,14 +238,14 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
                 selectable: false
             });
 
-            canvas.on('mouse:move', function (option) {
+            canvas.on('mouse:move', function(option) {
                 var e = option.e;
                 rectangle.set('width', e.offsetX - startX);
                 rectangle.set('height', e.offsetY - startY);
                 rectangle.setCoords();
             });
 
-            canvas.on('mouse:up', function (options) {
+            canvas.on('mouse:up', function(options) {
                 canvas.off('mouse:move');
                 canvas.off('mouse:up');
                 canvas.add(rectangle);
