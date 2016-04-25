@@ -26,7 +26,13 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
         var connectFailure = function(errorCode, errText) {
             console.log('connection error ' + errText);
-            addAlert('danger', 'connection error ' + errText);
+
+            if(errorCode === 'MEDIA_ERR'){
+                addAlert('danger', 'No camera detected! Connect a camera and try again');
+            } else {
+                addAlert('danger', 'Error ' + errText);
+            }
+
         };
         easyrtc.initMediaSource(
             function() {        // success callback
