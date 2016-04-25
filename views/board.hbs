@@ -1,4 +1,11 @@
 <div ng-controller="BoardCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fade in">
+                <uib-alert ng-repeat="alert in alerts" dismiss-on-timeout="8000" type="{[{alert.type}]}" close="closeAlert($index)">{[{alert.msg}]}</uib-alert>
+            </div>
+        </div>
+    </div>
 <div class="row" id="videoStreams">
     <div class="col-xs-3">
         <div class="embed-responsive embed-responsive-4by3">

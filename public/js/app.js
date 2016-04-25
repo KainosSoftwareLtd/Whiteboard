@@ -1,1 +1,1 @@
-angular.module('whiteboard', ['AppConfig', 'MainCtrl', 'BoardCtrl', 'InviteCtrl', 'FabricService']);
+angular.module('whiteboard', ['AppConfig', 'MainCtrl', 'BoardCtrl', 'InviteCtrl']);
