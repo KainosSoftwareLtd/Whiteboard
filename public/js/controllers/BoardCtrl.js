@@ -26,6 +26,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
         var connectFailure = function(errorCode, errText) {
             console.log('connection error ' + errText);
+            addAlert('danger', 'connection error ' + errText);
         };
         easyrtc.initMediaSource(
             function() {        // success callback
@@ -37,6 +38,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
                     },
                     function(data) {
                         console.log('Error connecting to room ' + data);
+                        addAlert('danger', 'Error connecting to room ' + data);
                     });
 
                 easyrtc.connect("kainos-whiteboard", connectSuccess, connectFailure);
