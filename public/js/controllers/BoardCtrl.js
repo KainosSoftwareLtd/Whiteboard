@@ -1,4 +1,4 @@
-angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', function ($scope, $location) {
+angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope', '$location', function ($scope, $location) {
 
 
     var roomId = $location.path().split(/[\s/]+/).pop();
@@ -6,6 +6,7 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
     $scope.brushColor = '#41a8c7';
     $scope.brushSize = 5;
+    $scope.alerts = [];
     var brushSizeStep = 5;
 
     var canvas = initCanvas();
@@ -102,7 +103,8 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
             }
 
             function callFailure(errorCode, errorText) {
-                easyrtc.showError(errorCode, errorText);
+               /// easyrtc.showError(errorCode, errorText);
+                addAlert('danger', errorText + ' Please try again');
                 if (connectCount < maxCallers && position > 0) {
                     establishConnection(position - 1);
                 }
@@ -111,10 +113,24 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
             easyrtc.call(list[position], callSuccess, callFailure);
         }
 
-        if (list.length > 0) {
-            establishConnection(list.length - 1);
+        if(list.length < maxCallers) {
+            if (list.length > 0) {
+                establishConnection(list.length - 1);
+            }
+        } else {
+            addAlert('danger', 'Access denied , this room is currently full');
+            easyrtc.disconnect();
         }
     }
+
+    function addAlert(type, message) {
+        $scope.alerts.push({type:type, msg: message});
+        $scope.$apply();
+    }
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     function initCanvas() {
         var canvas = this.__canvas = new fabric.Canvas('c', {
@@ -137,9 +153,10 @@ angular.module('BoardCtrl', []).controller('BoardCtrl', ['$scope', '$location', 
 
         try {
             easyrtc.sendDataWS({'targetRoom': roomId}, 'canvasStuff', data, function (reply) {
-                if (reply.msgType === "error") {
-                    easyrtc.showError(reply.msgData.errorCode, reply.msgData.errorText);
-                }
+                //if (reply.msgType === "error") {
+                //    //easyrtc.showError(reply.msgData.errorCode, reply.msgData.errorText);
+                //    addAlert('danger', reply.msgData.errorText + ' Please try again');
+                //}
             });
         } catch (e) {
             console.log(e);
