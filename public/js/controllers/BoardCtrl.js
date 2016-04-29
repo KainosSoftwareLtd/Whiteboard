@@ -26,6 +26,13 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
         var connectFailure = function(errorCode, errText) {
             console.log('connection error ' + errText);
+
+            if(errorCode === 'MEDIA_ERR'){
+                addAlert('danger', 'No camera detected! Connect a camera and try again');
+            } else {
+                addAlert('danger', 'Error ' + errText);
+            }
+
         };
         easyrtc.initMediaSource(
             function() {        // success callback
@@ -37,6 +44,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
                     },
                     function(data) {
                         console.log('Error connecting to room ' + data);
+                        addAlert('danger', 'Error connecting to room ' + data);
                     });
 
                 easyrtc.connect("kainos-whiteboard", connectSuccess, connectFailure);
