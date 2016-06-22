@@ -13,7 +13,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***
                 department: ***REMOVED***
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -21,7 +21,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -29,7 +29,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -37,7 +37,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -45,7 +45,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -53,7 +53,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             }
         ];
 

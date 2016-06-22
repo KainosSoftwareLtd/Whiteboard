@@ -11,7 +11,7 @@ describe('Invite Controller', function () {
                 userImage: ***REMOVED***
                 name: ***REMOVED***
                 department: ***REMOVED***
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -19,7 +19,7 @@ describe('Invite Controller', function () {
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -27,7 +27,7 @@ describe('Invite Controller', function () {
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -35,7 +35,7 @@ describe('Invite Controller', function () {
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -43,7 +43,7 @@ describe('Invite Controller', function () {
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             },
 
             {
@@ -51,7 +51,7 @@ describe('Invite Controller', function () {
                 userImage: ***REMOVED***
                 name: ***REMOVED***,
                 department: ***REMOVED***,
-                email: '***REMOVED***'
+                email: ***REMOVED***
             }
         ];
 
