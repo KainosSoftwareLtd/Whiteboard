@@ -38,7 +38,6 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
             function() {        // success callback
                 var selfVideo = document.getElementById("myVideo");
                 easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
-
                 easyrtc.joinRoom(roomId, function(data) {
                         console.log('Successfuly connected to room ' + data)
                     },
@@ -65,6 +64,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
         for(var i = 1; i < 4; i++) {
             var thisVideo = videoElements.find('video')[i];
+            sendData();
 
             if(thisVideo.id === "") {
                 thisVideo.id = callerEasyrtcid;
@@ -155,6 +155,8 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
         return canvas;
     }
+
+
 
     function sendData() {
         var data = JSON.stringify(canvas.toDatalessJSON());
