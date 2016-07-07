@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('***REMOVED***');
+var transporter = nodemailer.createTransport('smtps://whiteboardtest1%40gmail.com:Wh1t3board@smtp.gmail.com');
 var ical = require('ical-generator');
 
 

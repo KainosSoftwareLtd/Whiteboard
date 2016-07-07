@@ -9,9 +9,12 @@ var debug = require('debug')('Whiteboard:server');
 var http = require('http');
 var request = require("request");
 
+//Receiving config file location from environment variables
+var userconfig = require("../user.json");
+
 //EASY RTC DEPENDENCIES
 var io = require("socket.io");         // web socket external module
-var easyrtc = require("easyrtc");           // EasyRTC external module
+var easyrtc = require("easyrtc");      // EasyRTC external module
 
 
 /**
@@ -44,26 +47,13 @@ var socketServer = io.listen(server, {"log level":3});
 var rtc = easyrtc.listen(app, socketServer);
 
 
-
-
 //REF: http://xirsys.com/easyrtc/
 easyrtc.on("getIceConfig", function(connectionObj, callback) {
 
     // This object will take in an array of XirSys STUN and TURN servers
     var iceConfig = [];
 
-    request.post('https://service.xirsys.com/ice', {
-            form: {
-                ident: "***REMOVED***",
-                secret: "***REMOVED***",
-                domain: "***REMOVED***",
-                application: "default",
-                room: "default",
-                secure: 0
-
-            },
-            json: true
-        },
+    request.post('https://service.xirsys.com/ice', userconfig,
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 // body.d.iceServers is where the array of ICE servers lives

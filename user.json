@@ -1,0 +1,13 @@
+{
+	"form": 
+	{
+         "ident": ***REMOVED***
+         "secret": ***REMOVED***
+         "domain": ***REMOVED***
+         "application": "default",
+         "room": "default",
+         "secure": 1
+      },
+      "json": true
+  }
+
