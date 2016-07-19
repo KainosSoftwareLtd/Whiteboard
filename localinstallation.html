@@ -90,6 +90,40 @@
 
 <p>If you wish to add your own SMTP server this must be replaced.</p>
 
+<h3>
+<a id="addingNewContacts" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding New Contacts</h3>
+
+<p>Currently displaying people that are available to invite is handled as part of InviteCtrl.js (whiteboard/public/js/controllers/InviteCtrl.js) as shown below:</p>
+
+<div class="highlight highlight-source-js"><pre>
+    {
+         <span class="pl-s">id</span><span class="pl-k">:</span> <span class="pl-s">1</span>,
+         <span class="pl-s">userImage</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
+         <span class="pl-s">name</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Name<span class="pl-pds">'</span></span>,
+         <span class="pl-s">department</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department<span class="pl-pds">'</span></span>,
+         <span class="pl-s">email</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment@kainos.com<span class="pl-pds">'</span></span>
+    }
+</pre></div>
+
+<p>In order to add people to invite for this meeting their details will need to be added to this file in the appropriate format and each person must have a unique id. Therefore, if I wanted to add a second potential invitee I would add:</p>
+
+<div class="highlight highlight-source-js"><pre>
+    {
+         <span class="pl-s">id</span><span class="pl-k">:</span> <span class="pl-s">1</span>,
+         <span class="pl-s">userImage</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
+         <span class="pl-s">name</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Name<span class="pl-pds">'</span></span>,
+         <span class="pl-s">department</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department<span class="pl-pds">'</span></span>,
+         <span class="pl-s">email</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment@kainos.com<span class="pl-pds">'</span></span>
+    },
+    {
+         <span class="pl-s">id</span><span class="pl-k">:</span> <span class="pl-s">2</span>,
+         <span class="pl-s">userImage</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
+         <span class="pl-s">name</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Name2<span class="pl-pds">'</span></span>,
+         <span class="pl-s">department</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department2<span class="pl-pds">'</span></span>,
+         <span class="pl-s">email</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment2@kainos.com<span class="pl-pds">'</span></span>
+    }
+</pre></div>
+
 <hr>
 
 <h1>
@@ -98,3 +132,27 @@
 <p>To run associated tests Karma must be installed. To do this follow the instructions on the <a href="https://karma-runner.github.io/1.0/index.html">Karma website.</a> </p>
 
 <p>Run karma start <code>karma.conf.js</code> from the whiteboard folder in terminal. Test output will be displayed in the terminal.</p>
+
+<h4> NOTE </h4>
+<p>If you have added your own contacts then you will also need to edit InviteCtrlTests.js (whiteboard/test/unit/InviteCtrlTests.js).</p>
+
+<p>You will need to edit the data stored in the variable "mockTableTestData" by replacing any existing contacts with the contacts you have added. The information must be entered in the following format and must match the information you have added to InviteCtrl.js:</p>
+
+<div class="highlight highlight-source-js"><pre>
+   [
+    {
+         <span class="pl-s">id</span><span class="pl-k">:</span> <span class="pl-s">1</span>,
+         <span class="pl-s">userImage</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
+         <span class="pl-s">name</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Name<span class="pl-pds">'</span></span>,
+         <span class="pl-s">department</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department<span class="pl-pds">'</span></span>,
+         <span class="pl-s">email</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment@kainos.com<span class="pl-pds">'</span></span>
+    },
+    {
+         <span class="pl-s">id</span><span class="pl-k">:</span> <span class="pl-s">2</span>,
+         <span class="pl-s">userImage</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
+         <span class="pl-s">name</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Name2<span class="pl-pds">'</span></span>,
+         <span class="pl-s">department</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department2<span class="pl-pds">'</span></span>,
+         <span class="pl-s">email</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment2@kainos.com<span class="pl-pds">'</span></span>
+    }
+   ]; 
+</pre></div>
