@@ -1,0 +1,100 @@
+<html>
+<head lang="UTF-8"> 
+    <meta charset="UTF-8">
+    <title>Kainos Whiteboard by KainosSoftwareLtd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+</head>
+
+<body>
+    	<section class="page-header">
+      		<h1 class="project-name">Kainos Whiteboard</h1>
+      		<h2 class="project-tagline">An interactive collaborative whiteboard web application</h2>
+            <a href="https://github.com/KainosSoftwareLtd/Whiteboard" class="btn">View on GitHub</a>
+            <a href="https://github.com/KainosSoftwareLtd/Whiteboard/zipball/master" class="btn">Download .zip</a>
+            <a href="https://github.com/KainosSoftwareLtd/Whiteboard/tarball/master" class="btn">Download .tar.gz</a>
+    	</section> 
+
+        <a HREF="index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a HREF="background.html">Background</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a HREF="functionality.html">Functionality</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a HREF="localinstallation.html">Local Installation</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<section class="main-content">
+    	<h1>
+			<a id="functionality" class="anchor" href="#functionality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Local Installation
+		</h1>
+
+        <h3>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h3>
+
+<p>You will need to download:</p>
+
+<ul>
+<li>Node.js version 0.10.25 - The installer for this can be found here: <a href="https://nodejs.org/en/blog/release/v0.10.25/">https://nodejs.org/en/blog/release/v0.10.25/</a> </li>
+<li>Npm version 3.3.10 - Installation instructions for this can be found here: <a href="https://www.versioneye.com/nodejs/npm/3.3.10">https://www.versioneye.com/nodejs/npm/3.3.10</a>
+</li>
+</ul>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+
+<ol>
+<li>In Terminal/Command Line run: git clone <a href="https://github.com/KainosSoftwareLtd/Whiteboard.git">https://github.com/KainosSoftwareLtd/Whiteboard.git</a> </li>
+<li>In the whiteboard folder run npm install to download all required dependencies.</li>
+<li>Change directory to the bin folder and run node www</li>
+<li>You now can access the site at http://localhost:3000/ </li>
+</ol>
+
+<hr>
+
+<h1>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h1>
+
+<h3>
+<a id="xirsys" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>XirSys</h3>
+
+<p>You will also need to create a XirSys account. This can be done via their website:
+<a href="https://xirsys.com/">https://xirsys.com/</a> </p>
+
+<p>Once you have created an account you will need to enter the following details to the “user.json” file in the format outlined below:</p>
+
+<div class="highlight highlight-source-js"><pre>{   
+    <span class="pl-s"><span class="pl-pds">"</span>form<span class="pl-pds">"</span></span><span class="pl-k">:</span> 
+    {
+         <span class="pl-s"><span class="pl-pds">"</span>ident<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>UserName<span class="pl-pds">"</span></span>,
+         <span class="pl-s"><span class="pl-pds">"</span>secret<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>API_Authentication_Key<span class="pl-pds">"</span></span>,
+         <span class="pl-s"><span class="pl-pds">"</span>domain<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>YourDomain<span class="pl-pds">"</span></span>,
+         <span class="pl-s"><span class="pl-pds">"</span>application<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>YourApplication<span class="pl-pds">"</span></span>,
+         <span class="pl-s"><span class="pl-pds">"</span>room<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>YourRoom<span class="pl-pds">"</span></span>,
+         <span class="pl-s"><span class="pl-pds">"</span>secure<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>json<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>
+}
+</pre></div>
+
+<h3>
+<a id="smtp" class="anchor" href="#smtp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SMTP</h3>
+
+<p>In order to make use of the invite email functionality you will also need to add an SMTP server.</p>
+
+<p>A gmail account provides an SMTP server. This will need to be added to the invite.js file (whiteboard/routes/invite.js) as shown below:</p>
+
+<p><code>var transporter = nodemailer.createTransport('smtps://&lt;YourDomain&gt;%40gmail.com:&lt;YourPassword&gt;@smtp.gmail.com');</code></p>
+
+<p>A default SMTP server is currently utilised in the code. It is the following:
+<code>var transporter = nodemailer.createTransport('smtps://whiteboardtest1%40gmail.com:Wh1t3board@smtp.gmail.com');</code></p>
+
+<p>If you wish to add your own SMTP server this must be replaced.</p>
+
+<hr>
+
+<h1>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h1>
+
+<p>To run associated tests Karma must be installed. To do this follow the instructions on the <a href="https://karma-runner.github.io/1.0/index.html">Karma website.</a> </p>
+
+<p>Run karma start <code>karma.conf.js</code> from the whiteboard folder in terminal. Test output will be displayed in the terminal.</p>

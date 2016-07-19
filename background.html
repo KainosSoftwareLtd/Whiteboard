@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Kainos Whiteboard by KainosSoftwareLtd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Kainos Whiteboard</h1>
+      <h2 class="project-tagline">An interactive collaborative whiteboard web application</h2>
+      <a href="https://github.com/KainosSoftwareLtd/Whiteboard" class="btn">View on GitHub</a>
+      <a href="https://github.com/KainosSoftwareLtd/Whiteboard/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/KainosSoftwareLtd/Whiteboard/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <a HREF="index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a HREF="background.html">Background</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a HREF="functionality.html">Functionality</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a HREF="localinstallation.html">Local Installation</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <section class="main-content">
+      <h1>
+<a id="background" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Background</h1>
+
+<p>Kainos Whiteboard was initially created by Michael Kemp, a Kainos Software Engineer, for his final year university project.</p>
+
+<h2>
+<a id="theProblem" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The Problem</h2>
+<p>As software engineering projects get larger teams are becoming increasingly distributed. It is not uncommon for a development team to be spread across multiple locations, not just in the same country but also all over the world. 
+One of the most important factors when developing software is communication and this distributed development model can make this quite a challenge.</p>
+
+<p>Tools such as Skype are often used in an attempt to overcome this probelm but in some cases this is not enough. It can often be easier to explain things visually. Many meeting rooms have whiteboards for people to brainstorm but there are few solutions that allow for cross site collaboration in this manner.  
+There are a number of interactive whiteboard solutions that already exist but these can be extremely expensive.</p>
+
+<p>Hardware solutions such as the interactive whiteboards used in schools do not have audio and video features and cost many thousands of pounds. Software solutions exist but many do not support audio and video and any with this function are not free.  
+</p>
+
+<p>Michael's goal was to, "design an inexpensive interactive collaborative whiteboard with built in support for audio/video that allows users to connect to each other, or meetings with multiple parties". To do this he decided to use WebRTC, specifically EasyRTC, in order to enable video and audio transmission through web browsers, whilst also providing a whiteboard canvas to allow for more in-depth planning by allowing the use of diagrams and sketches in real time.</p>
+
+<h2>
+<a id="technologies" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technologies</h2>
+
+<p>The solution consists of two main components – the client and the server. The server uses Node.js as it is lightweight and allows the use of JavaScript in the backend. The Express framework is used on top of Node.js and handles routing and serving content to the client.
+
+The client uses WebRTC. These are JavaScript APIs which are built into the browser and allow peer to peer audio and video without the need to download extra software.</p>
+
+<h2>
+<a id="whyMakeItOpenSource" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why make it open source?</h2>
+
+<p>Members of Kainos staff were really impressed with Michael's project and seen how useful it would be to be wide range of use cases. I was therefore asked to make the project open source so that it could be put to use and further developed.</p>

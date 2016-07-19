@@ -18,6 +18,11 @@
       <a href="https://github.com/KainosSoftwareLtd/Whiteboard/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
+    <a HREF="index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a HREF="background.html">Background</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a HREF="functionality.html">Functionality</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a HREF="localinstallation.html">Local Installation</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
     <section class="main-content">
       <h1>
 <a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h1>
@@ -30,113 +35,16 @@
 <p>To access the Kainos Collaborative Whiteboard through your browser, go to the following link: <a href="https://kainoswhiteboard.herokuapp.com/">https://kainoswhiteboard.herokuapp.com/</a> </p>
 
 <p>This will allow you to communicate with others. However, you will not be able to use your own XirSys account or SMTP server and you will be unable to add any new contacts for the “Create New Meeting” screen.</p>
+<p> In order to customise the contacts you can add/invite you will need to install the project locally. Instructions on how to do this can be found <a href="localinstallation.html">here</a>.
 
 <hr>
 
 <h1>
-<a id="local-installation" class="anchor" href="#local-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Local Installation</h1>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h1>
 
-<h3>
-<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h3>
+<p>• <strong>Michael Kemp</strong> – Initial creator of the whiteboard project.</p>
 
-<p>You will need to download:</p>
-
-<ul>
-<li>Node.js version 0.10.25 - The installer for this can be found here: <a href="https://nodejs.org/en/blog/release/v0.10.25/">https://nodejs.org/en/blog/release/v0.10.25/</a> </li>
-<li>Npm version 3.3.10 - Installation instructions for this can be found here: <a href="https://www.versioneye.com/nodejs/npm/3.3.10">https://www.versioneye.com/nodejs/npm/3.3.10</a>
-</li>
-</ul>
-
-<h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
-
-<ol>
-<li>In Terminal/Command Line run: git clone <a href="https://github.com/KainosSoftwareLtd/Whiteboard.git">https://github.com/KainosSoftwareLtd/Whiteboard.git</a> </li>
-<li>In the whiteboard folder run npm install to download all required dependencies.</li>
-<li>Change directory to the bin folder and run node www</li>
-<li>You now can access the site at http://localhost:3000/ </li>
-</ol>
-
-<hr>
-
-<h1>
-<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h1>
-
-<h3>
-<a id="xirsys" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>XirSys</h3>
-
-<p>You will also need to create a XirSys account. This can be done via their website:
-<a href="https://xirsys.com/">https://xirsys.com/</a> </p>
-
-<p>Once you have created an account you will need to enter the following details to the “user.json” file in the format outlined below:</p>
-
-<div class="highlight highlight-source-js"><pre>{   
-    <span class="pl-s"><span class="pl-pds">"</span>form<span class="pl-pds">"</span></span><span class="pl-k">:</span> 
-    {
-         <span class="pl-s"><span class="pl-pds">"</span>ident<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>UserName<span class="pl-pds">"</span></span>,
-         <span class="pl-s"><span class="pl-pds">"</span>secret<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>API_Authentication_Key<span class="pl-pds">"</span></span>,
-         <span class="pl-s"><span class="pl-pds">"</span>domain<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>YourDomain<span class="pl-pds">"</span></span>,
-         <span class="pl-s"><span class="pl-pds">"</span>application<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>YourApplication<span class="pl-pds">"</span></span>,
-         <span class="pl-s"><span class="pl-pds">"</span>room<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>YourRoom<span class="pl-pds">"</span></span>,
-         <span class="pl-s"><span class="pl-pds">"</span>secure<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">1</span>
-    },
-    <span class="pl-s"><span class="pl-pds">"</span>json<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>
-}
-</pre></div>
-
-<h3>
-<a id="smtp" class="anchor" href="#smtp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SMTP</h3>
-
-<p>In order to make use of the invite email functionality you will also need to add an SMTP server.</p>
-
-<p>A gmail account provides an SMTP server. This will need to be added to the invite.js file (whiteboard/routes/invite.js) as shown below:</p>
-
-<p><code>var transporter = nodemailer.createTransport('smtps://&lt;YourDomain&gt;%40gmail.com:&lt;YourPassword&gt;@smtp.gmail.com');</code></p>
-
-<p>A default SMTP server is currently utilised in the code. It is the following:
-<code>var transporter = nodemailer.createTransport('smtps://whiteboardtest1%40gmail.com:Wh1t3board@smtp.gmail.com');</code></p>
-
-<p>If you wish to add your own SMTP server this must be replaced.</p>
-
-<h3>
-<a id="adding-contacts" class="anchor" href="#adding-contacts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding Contacts</h3>
-
-<p>Currently displaying people that are available to invite is handled as part of InviteCtrl.js (whiteboard/public/js/controllers/InviteCtrl.js) as shown below:</p>
-
-<div class="highlight highlight-source-js"><pre>{
- id<span class="pl-k">:</span> <span class="pl-c1">1</span>,
- userImage<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
- name<span class="pl-k">:</span> Test Name,
- department<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department<span class="pl-pds">'</span></span>,
- email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment@kainos.com<span class="pl-pds">'</span></span>
-}</pre></div>
-
-<p>In order to add people to invite for this meeting their details will need to be added to this file in the appropriate format and each person must have a unique id. Therefore, if I wanted to add a second potential invitee I would add:</p>
-
-<div class="highlight highlight-source-js"><pre>{
-  id<span class="pl-k">:</span> <span class="pl-c1">1</span>,
-  userImage<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
-  name<span class="pl-k">:</span> Test Name,
-  department<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department<span class="pl-pds">'</span></span>,
-  email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment@kainos.com<span class="pl-pds">'</span></span>
-},  
-
-{
- id<span class="pl-k">:</span> <span class="pl-c1">2</span>,
- userImage<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://placehold.it/150x150<span class="pl-pds">'</span></span>,
- name<span class="pl-k">:</span> Test Name2,
- department<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Test Department2<span class="pl-pds">'</span></span>,
- email<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>testdepartment2@kainos.com<span class="pl-pds">'</span></span>
-}</pre></div>
-
-<hr>
-
-<h1>
-<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h1>
-
-<p>To run associated tests Karma must be installed. To do this follow the instructions on the Karma website. </p>
-
-<p>Run karma start <code>karma.conf.js</code> from the whiteboard folder in terminal. Test output will be displayed in the terminal.</p>
+<p>• <strong>Corey Duffy</strong> – Taking project open source and bug fixes.</p>
 
 <hr>
 
@@ -154,15 +62,6 @@
 <p><strong>Q: Are there any costs associated with a XirSys account?</strong></p>
 
 <p><strong>A:</strong> This depends on the plan you choose. XirSys offer a free plan which provides 100MB, 10 concurrent TURN connections and unlimited STUN usage.</p>
-
-<hr>
-
-<h1>
-<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h1>
-
-<p>• <strong>Michael Kemp</strong> – Initial creator of the project</p>
-
-<p>• <strong>Corey Duffy</strong> – Making project open source and bug fixes</p>
 
 <hr>
 
