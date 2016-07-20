@@ -4,6 +4,8 @@
 
 The goal of Kainos Whiteboard is to allow people to collaborate on projects through its whiteboard functionality and use of real time communication. Using webRTC it allows for in-browser video conferencing and its whiteboard feature allows any participant in the call to effectively plan or communicate their ideas through drawing sketches and diagrams that can be moved, rotated and deleted as needed. It aims to improve the way teams work together across multiple geographical locations.
 
+![alt text](Canvas_Functionality.gif)
+
 For more information, please visit this website: http://kainossoftwareltd.github.io/Whiteboard/  
 
 #Getting Started
