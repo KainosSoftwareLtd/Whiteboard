@@ -27,7 +27,9 @@ Installation instructions for this can be found here: https://www.versioneye.com
 1. In Terminal/Command Line run: git clone https://github.com/KainosSoftwareLtd/Whiteboard.git 
 2. In the whiteboard folder run npm install to download all required dependencies.
 3. Change directory to the bin folder and run node www
+![alt text](Running_Locally.gif)
 4. You now can access the site at http://localhost:3000/
+![alt text](Connecting.gif)
 
 #Configuration
 ##XirSys
@@ -67,7 +69,7 @@ Currently displaying people that are available to invite is handled as part of I
    userImage: ***REMOVED***
    name: Test Name,
    department: 'Test Department',
-    email: 'testdepartment@kainos.com'
+   email: 'testdepartment@kainos.com'
 },
 ```
 In order to add people to invite for this meeting their details will need to be added to this file in the appropriate format and each person must have a unique id. Therefore, if I wanted to add a second potential invitee I would add:
@@ -119,6 +121,20 @@ The information must be entered in the following format and must match the infor
 ];
 ```
 
+#Q&A
+**Q: What browsers are supported?**
+
+**A:** Currently most browsers except for Safari support WebRTC to some capacity. More in-depth details can be found here, http://iswebrtcreadyyet.com/ 
+
+**Q: How many connections can there be to any one meeting?**
+
+**A:** Four users/connections can access a room at any one time
+
+**Q: Are there any costs associated with a XirSys account?**
+
+**A:** This depends on the plan you choose. XirSys offer a free plan which provides 100MB, 10 concurrent TURN connections and unlimited STUN usage.
+
+
 #Built With
 *	Angular JS
 *	Fabric.js
@@ -127,8 +143,7 @@ The information must be entered in the following format and must match the infor
 
 #Authors
 * **Michael Kemp** – Initial creator of the project.
-*	**Corey Duffy** – Making project open source and minor bug fixes.
+* **Corey Duffy** – Making project open source and minor bug fixes.
 
 #License
 This project is licensed under the MIT License – please see the LICENSE file for details.
-
