@@ -4,6 +4,8 @@
 
 The goal of Kainos Whiteboard is to allow people to collaborate on projects through its whiteboard functionality and use of real time communication. Using webRTC it allows for in-browser video conferencing and its whiteboard feature allows any participant in the call to effectively plan or communicate their ideas through drawing sketches and diagrams that can be moved, rotated and deleted as needed. It aims to improve the way teams work together across multiple geographical locations.
 
+![alt text](Canvas_Functionality.gif)
+
 For more information, please visit this website: http://kainossoftwareltd.github.io/Whiteboard/  
 
 #Getting Started
@@ -90,6 +92,17 @@ In order to add people to invite for this meeting their details will need to be 
     email: 'testdepartment2@kainos.com'
 },
 ```
+
+#Connecting Another Computer To Localhost
+Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:
+
+`http://IPADDRESS:3000`
+
+From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:
+
+`http://IPADDRESS:3000/board/ROOMPIN`
+
+NOTE: Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication.
 
 #Testing
 To run associated tests Karma must be installed. To do this follow the instructions on the Karma website. 
