@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
-//app.all('*', ensureSecure);
+app.all('*', ensureSecure);
 app.use('/', routes);
 app.use('/board', board);
 app.use('/invite', invite);
