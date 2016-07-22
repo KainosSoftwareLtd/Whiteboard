@@ -11,50 +11,50 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
             {
                 id: 1,
                 userImage: ***REMOVED***
-                name: ***REMOVED***
-                department: ***REMOVED***
-                email: ***REMOVED***
+                name: '**ADD CONTACT HERE**',
+                department: '**ADD CONTATCT HERE**',
+                email: '**ADD CONTACT HERE**'
             },
 
             {
                 id: 2,
                 userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                name: '**ADD CONTACT HERE**',
+                department: '**ADD CONTATCT HERE**',
+                email: '**ADD CONTACT HERE**'
             },
 
             {
                 id: 3,
                 userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                name: '**ADD CONTACT HERE**',
+                department: '**ADD CONTATCT HERE**',
+                email: '**ADD CONTACT HERE**'
             },
 
             {
                 id: 4,
                 userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                name: '**ADD CONTACT HERE**',
+                department: '**ADD CONTATCT HERE**',
+                email: '**ADD CONTACT HERE**'
             },
 
             {
                 id: 5,
                 userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                name: '**ADD CONTACT HERE**',
+                department: '**ADD CONTATCT HERE**',
+                email: '**ADD CONTACT HERE**'
             },
 
             {
                 id: 6,
                 userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
-            }
+                name: '**ADD CONTACT HERE**',
+                department: '**ADD CONTATCT HERE**',
+                email: '**ADD CONTACT HERE**'
+            },
         ];
 
 

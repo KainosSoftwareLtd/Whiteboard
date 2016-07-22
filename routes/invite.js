@@ -4,8 +4,6 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport('smtps://whiteboardtest1%40gmail.com:Wh1t3board@smtp.gmail.com');
 var ical = require('ical-generator');
 
-
-
 /* GET invite page. */
 router.get('/', function(req, res, next) {
     res.render('invite');

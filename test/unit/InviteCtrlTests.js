@@ -8,51 +8,51 @@ describe('Invite Controller', function () {
         [
             {
                 id: 1,
-                userImage: ***REMOVED***
-                name: ***REMOVED***
-                department: ***REMOVED***
-                email: ***REMOVED***
+                userImage: '**ADD TEST DATA HERE**',
+                name: '**ADD TEST DATA HERE**',
+                department: '**ADD TEST DATA HERE**',
+                email: '**ADD TEST DATA HERE**'
             },
 
             {
                 id: 2,
-                userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                userImage: '**ADD TEST DATA HERE**',
+                name: '**ADD TEST DATA HERE**',
+                department: '**ADD TEST DATA HERE**',
+                email: '**ADD TEST DATA HERE**'
             },
 
             {
                 id: 3,
-                userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                userImage: '**ADD TEST DATA HERE**',
+                name: '**ADD TEST DATA HERE**',
+                department: '**ADD TEST DATA HERE**',
+                email: '**ADD TEST DATA HERE**'
             },
 
             {
                 id: 4,
-                userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                userImage: '**ADD TEST DATA HERE**',
+                name: '**ADD TEST DATA HERE**',
+                department: '**ADD TEST DATA HERE**',
+                email: '**ADD TEST DATA HERE**'
             },
 
             {
                 id: 5,
-                userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
+                userImage: '**ADD TEST DATA HERE**',
+                name: '**ADD TEST DATA HERE**',
+                department: '**ADD TEST DATA HERE**',
+                email: '**ADD TEST DATA HERE**'
             },
 
             {
                 id: 6,
-                userImage: ***REMOVED***
-                name: ***REMOVED***,
-                department: ***REMOVED***,
-                email: ***REMOVED***
-            }
+                userImage: '**ADD TEST DATA HERE**',
+                name: '**ADD TEST DATA HERE**',
+                department: '**ADD TEST DATA HERE**',
+                email: '**ADD TEST DATA HERE**'
+            },
         ];
 
     //REF:https://docs.angularjs.org/guide/unit-testing
