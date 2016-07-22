@@ -58,6 +58,23 @@
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h1>
 
 <h3>
+<a id="ssl" class="anchor" href="#ssl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SSL</h3>
+<p>You will need to generate an SSL key and certificate in order for the program to run on a HTTPS server and thus avoid any issues with browsers like Chrome denying access to your localhost.</p>
+<p>These can be generated on Mac by using Keychain Access. Please follow the instructions found <a href="https://certsimple.com/blog/localhost-ssl-fix">here</a> and store the generated keys in the 'whiteboard' folder.</p>
+<p>Instructions for generating these files on windows can be found <a href="http://www.robbagby.com/iis/self-signed-certificates-on-iis-7-the-easy-way-and-the-most-effective-way/">here</a>.</p>
+<p>Once these files have been generated and stored in the 'whiteboard' folder, you will need to alter the following code in 'whiteboard/bin/www':</p>
+
+<code>
+var options = {
+  <br>
+  &nbsp;&nbsp;key: fs.readFileSync('../[NAME OF KEY FILE]'),
+  <br>
+  &nbsp;&nbsp;cert: fs.readFileSync('../[NAME OF CERTIFICATE FILE]')
+  <br>
+};</code>
+
+
+<h3>
 <a id="xirsys" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>XirSys</h3>
 
 <p>You will also need to create a XirSys account. This can be done via their website:
@@ -138,7 +155,7 @@
 <p> From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:</p>
 <p><code>http://IPADDRESS:3000/board/ROOMPIN</code></p>
 
-<p> NOTE: Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication.
+<p> <b>NOTE:</b> You will be redirected to port 8000 in your browser. This is so as to migrate the program to a HTTPS server and allow other computers to connect to your localhost, provided you have generated a SSL key.
 
 <hr>
 
@@ -149,8 +166,7 @@
 
 <p>Run karma start <code>karma.conf.js</code> from the whiteboard folder in terminal. Test output will be displayed in the terminal.</p>
 
-<h4> NOTE </h4>
-<p>If you have added your own contacts then you will also need to edit InviteCtrlTests.js (whiteboard/test/unit/InviteCtrlTests.js).</p>
+<p><b>NOTE:</b> If you have added your own contacts then you will also need to edit InviteCtrlTests.js (whiteboard/test/unit/InviteCtrlTests.js).</p>
 
 <p>You will need to edit the data stored in the variable "mockTableTestData" by replacing any existing contacts with the contacts you have added. The information must be entered in the following format and must match the information you have added to InviteCtrl.js:</p>
 
