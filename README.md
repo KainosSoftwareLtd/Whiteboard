@@ -34,6 +34,24 @@ Installation instructions for this can be found here: https://www.versioneye.com
 ![alt text](Connecting.gif)
 
 #Configuration
+
+##SSL
+You will need to generate an SSL key and certificate in order for the program to run on a HTTPS server and thus avoid any issues with browsers like Chrome denying access to your localhost.
+
+These can be generated on Mac by using Keychain Access. Please follow the instructions found [here](https://certsimple.com/blog/localhost-ssl-fix) and store the generated keys in the 'whiteboard' folder.
+
+Instructions for generating these files on windows can be found [here](http://www.robbagby.com/iis/self-signed-certificates-on-iis-7-the-easy-way-and-the-most-effective-way/).
+
+Once these files have been generated and stored in the 'whiteboard' folder, you will need to alter the following code in 'whiteboard/bin/www':
+
+```javascript
+var options = {
+  key: fs.readFileSync('../[NAME OF KEY FILE]'),
+  cert: fs.readFileSync('../[NAME OF CERTIFICATE FILE]') 
+};
+```
+
+
 ##XirSys
 You will also need to create a XirSys account. This can be done via their website:
 https://xirsys.com/ 
