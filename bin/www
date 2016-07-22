@@ -13,8 +13,8 @@ var fs = require('fs');
 var https = require('https');
 
 var options = {
-  key: fs.readFileSync('../**ADD KEY HERE**'),
-  cert: fs.readFileSync('../**ADD CERTIFICATE HERE**')
+  key: fs.readFileSync('../key.pem'),
+  cert: fs.readFileSync('../key-cert.pem')
 };
 
 //Receiving config file location from environment variables
