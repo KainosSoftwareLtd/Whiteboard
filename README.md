@@ -144,9 +144,10 @@ This will allow to bypass security issues with modern versions of browsers such 
 Next you will need to unzip the downloaded file. If you are using a Windows machine please double click ngrok.zip. To do this on Linux or OSX please run the following command in terminal:
 `unzip /path/to/ngrok.zip`
 
-In order to then create a public HTTPS URL please run the following command `ngrok http 3000`
+In order to then create a public HTTPS URL please run the following command `./ngrok http 3000`
 
 If you have the project running in another terminal window i.e. by running the `node www` command, your configuration of the whiteboard project will then be accessible on a URL similar to the following example: https://08ff56sd.ngrok.io
+![alt text](Using_ngrok.gif)
 
 #Pushing to Heroku
 Once you are happy with your whiteboard configuration it may be useful to push it to Heroku to make it easier to access. By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.
