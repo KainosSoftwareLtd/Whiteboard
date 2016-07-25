@@ -36,23 +36,6 @@ Installation instructions for this can be found here: https://www.versioneye.com
 
 #Configuration
 
-##SSL
-You will need to generate an SSL key and certificate in order for the program to run on a HTTPS server and thus avoid any issues with browsers like Chrome denying access to your localhost.
-
-These can be generated on Mac by using Keychain Access. Please follow the instructions found [here](https://certsimple.com/blog/localhost-ssl-fix) and store the generated keys in the 'whiteboard' folder.
-
-Instructions for generating these files on windows can be found [here](http://www.robbagby.com/iis/self-signed-certificates-on-iis-7-the-easy-way-and-the-most-effective-way/).
-
-Once these files have been generated and stored in the 'whiteboard' folder, you will need to alter the following code in 'whiteboard/bin/www':
-
-```javascript
-var options = {
-  key: fs.readFileSync('../[NAME OF KEY FILE]'),
-  cert: fs.readFileSync('../[NAME OF CERTIFICATE FILE]') 
-};
-```
-
-
 ##XirSys
 You will also need to create a XirSys account. This can be done via their website:
 https://xirsys.com/ 
@@ -112,27 +95,8 @@ In order to add people to invite for this meeting their details will need to be 
 },
 ```
 
-#Connecting Another Computer To Localhost
-Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:
-
-`http://IPADDRESS:3000`
-
-From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:
-
-`http://IPADDRESS:3000/board/ROOMPIN`
-
-NOTE: Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication.
-
-#Pushing to Heroku
-By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.
-
-To do this you will need to create a free Heroku account. This can be done [here](https://signup.heroku.com/dc).
-
-Once your free account is set up you will be able to push your code to a personal app by following the instructions found [here](https://devcenter.heroku.com/articles/git). You will then be able to access your site at 
-https://YOURDOMAINNAME.herokuapp.com
-
 #Testing
-To run associated tests Karma must be installed. To do this follow the instructions on the Karma website. 
+To run associated tests Karma must be installed. To do this follow the instructions on the [Karma website](https://karma-runner.github.io/1.0/index.html). 
 
 Run karma `start karma.conf.js` from the whiteboard folder in terminal. Test output will be displayed in the terminal.
 
@@ -160,6 +124,38 @@ The information must be entered in the following format and must match the infor
  }
 ];
 ```
+
+#Connecting Another Computer To Localhost
+Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:
+
+`http://IPADDRESS:3000`
+
+From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:
+
+`http://IPADDRESS:3000/board/ROOMPIN`
+
+NOTE: Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication. If this is the case please follow the instructions below to utilise ngrok in order to bypass this issue.
+
+##Ngrok
+Ngrok enables you to "Instantly create a public HTTPS URL for a web site running locally on your development machine."
+
+This will allow to bypass security issues with modern versions of browsers such as Google Chrome by allowing you to connect to a HTTPS URL. To begin please download ngrok from the site found [here](https://ngrok.com/) and save the zip file to your "whiteboard" folder
+
+Next you will need to unzip the downloaded file. If you are using a Windows machine please double click ngrok.zip. To do this on Linux or OSX please run the following command in terminal:
+`unzip /path/to/ngrok.zip`
+
+In order to then create a public HTTPS URL please run the following command `ngrok http 3000`
+
+If you have the project running in another terminal window i.e. by running the `node www` command, your configuration of the whiteboard project will then be accessible on a URL similar to the following example: https://08ff56sd.ngrok.io
+
+#Pushing to Heroku
+Once you are happy with your whiteboard configuration it may be useful to push it to Heroku to make it easier to access. By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.
+
+To do this you will need to create a free Heroku account. This can be done [here](https://signup.heroku.com/dc).
+
+Once your free account is set up you will be able to push your code to a personal app by following the instructions found [here](https://devcenter.heroku.com/articles/git). You will then be able to access your site at 
+https://YOURDOMAINNAME.herokuapp.com
+
 
 #Q&A
 **Q: What browsers are supported?**
