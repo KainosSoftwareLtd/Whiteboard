@@ -15,13 +15,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-function ensureSecure(req, res, next){
-  if(req.secure){
-    return next();
-  };
-  res.redirect('https://'+req.host+':' + 8000 + req.url);
-};
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -31,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
-app.all('*', ensureSecure);
 app.use('/', routes);
 app.use('/board', board);
 app.use('/invite', invite);
