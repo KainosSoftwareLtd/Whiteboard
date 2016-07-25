@@ -10,10 +10,11 @@ For more information, please visit this website: http://kainossoftwareltd.github
 
 #Getting Started
 ##Online Access
-To access the Kainos Collaborative Whiteboard through your browser, go to the following link: https://kainoswhiteboard.herokuapp.com/ 
-This will allow you to communicate with others. However, you will not be able to use your own XirSys account or SMTP server and you will be unable to add any new contacts for the “Create New Meeting” screen.
+To access a sample configuration of the Kainos Collaborative Whiteboard project through your browser, go to the following link: https://kainoswhiteboard.herokuapp.com/ 
 
-In order to avail of these features you will need to install the program locally.
+In order to customise the contacts you can add/invite you will need to install the project locally. 
+
+Once it has been installed locally, you will be able to push your own configuration to Heroku. This will allow you to use your own XirSys account, SMTP server and will allow you to add new contacts to the “Create New Meeting” screen. 
 
 ##Local Installation
 ###Prerequisites
@@ -121,6 +122,14 @@ From here the user will be able to enter a meeting room pin or they can directly
 `http://IPADDRESS:3000/board/ROOMPIN`
 
 NOTE: Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication.
+
+#Pushing to Heroku
+By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.
+
+To do this you will need to create a free Heroku account. This can be done [here](https://signup.heroku.com/dc).
+
+Once your free account is set up you will be able to push your code to a personal app by following the instructions found [here](https://devcenter.heroku.com/articles/git). You will then be able to access your site at 
+https://YOURDOMAINNAME.herokuapp.com
 
 #Testing
 To run associated tests Karma must be installed. To do this follow the instructions on the Karma website. 
