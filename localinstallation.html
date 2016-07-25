@@ -46,9 +46,9 @@
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
 
 <ol>
-<li>In Terminal/Command Line run: git clone <a href="https://github.com/KainosSoftwareLtd/Whiteboard.git">https://github.com/KainosSoftwareLtd/Whiteboard.git</a> </li>
-<li>In the whiteboard folder run npm install to download all required dependencies.</li>
-<li>Change directory to the bin folder and run node www</li>
+<li>In Terminal/Command Line run: <code> git clone <a href="https://github.com/KainosSoftwareLtd/Whiteboard.git">https://github.com/KainosSoftwareLtd/Whiteboard.git</a></code> </li>
+<li>In the whiteboard folder run <code>npm install</code> to download all required dependencies.</li>
+<li>Change directory to the bin folder and run <code>node www</code></li>
 <li>You now can access the site at http://localhost:3000/ </li>
 </ol>
 
@@ -56,23 +56,6 @@
 
 <h1>
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h1>
-
-<h3>
-<a id="ssl" class="anchor" href="#ssl" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SSL</h3>
-<p>You will need to generate an SSL key and certificate in order for the program to run on a HTTPS server and thus avoid any issues with browsers like Chrome denying access to your localhost.</p>
-<p>These can be generated on Mac by using Keychain Access. Please follow the instructions found <a href="https://certsimple.com/blog/localhost-ssl-fix">here</a> and store the generated keys in the 'whiteboard' folder.</p>
-<p>Instructions for generating these files on windows can be found <a href="http://www.robbagby.com/iis/self-signed-certificates-on-iis-7-the-easy-way-and-the-most-effective-way/">here</a>.</p>
-<p>Once these files have been generated and stored in the 'whiteboard' folder, you will need to alter the following code in 'whiteboard/bin/www':</p>
-
-<code>
-var options = {
-  <br>
-  &nbsp;&nbsp;key: fs.readFileSync('../[NAME OF KEY FILE]'),
-  <br>
-  &nbsp;&nbsp;cert: fs.readFileSync('../[NAME OF CERTIFICATE FILE]')
-  <br>
-};</code>
-
 
 <h3>
 <a id="xirsys" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>XirSys</h3>
@@ -147,30 +130,6 @@ var options = {
 <hr>
 
 <h1>
-<a id="connectingAnotherComputerToLocalHost" class="anchor" href="#connectingAnotherComputerToLocalHost" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connecting Another Computer To LocalHost</h1>
-
-<p>Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:<br>
-<p><code>http://IPADDRESS:3000</code></p>
-
-<p> From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:</p>
-<p><code>http://IPADDRESS:3000/board/ROOMPIN</code></p>
-
-<p> <b>NOTE:</b> You will be redirected to port 8000 in your browser. This is so as to migrate the program to a HTTPS server and allow other computers to connect to your localhost, provided you have generated a SSL key.
-
-<hr>
-
-<h1>
-<a id="pushingToHeroku" class="anchor" href="#pushingToHeroku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pushing to Heroku</h1>
-
-<p> By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.</p>
-
-<p> To do this you will need to create a free Heroku account. This can be done <a href = "https://signup.heroku.com/dc">here</a>. </p>
-
-<p> Once your free account is set up you will be able to push your code to a personal app by following the instructions found <a href = "https://devcenter.heroku.com/articles/git">here</a>. You will then be able to access your site at <br> <code>https://YOURDOMAINNAME.herokuapp.com</code></p>
-
-<hr>
-
-<h1>
 <a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h1>
 
 <p>To run associated tests Karma must be installed. To do this follow the instructions on the <a href="https://karma-runner.github.io/1.0/index.html">Karma website.</a> </p>
@@ -199,3 +158,37 @@ var options = {
     }
    ]; 
 </pre></div>
+
+
+<hr>
+
+<h1>
+<a id="connectingAnotherComputerToLocalHost" class="anchor" href="#connectingAnotherComputerToLocalHost" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connecting Another Computer To LocalHost</h1>
+
+<p>Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:<br>
+<p><code>http://IPADDRESS:3000</code></p>
+
+<p> From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:</p>
+<p><code>http://IPADDRESS:3000/board/ROOMPIN</code></p>
+
+<p> <b>NOTE:</b> Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication. If this is the case please follow the instructions below to utilise ngrok in order to bypass this issue.</p>
+
+<h3>
+<a id="ngrok" class="anchor" href="#ngrok" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ngrok</h3>
+<p>Ngrok enables you to "Instantly create a public HTTPS URL for a web site running locally on your development machine."</p>
+<p>This will allow to bypass security issues with modern versions of browsers such as Google Chrome by allowing you to connect to a HTTPS URL. To begin please download ngrok from the site found <a href="https://ngrok.com/">here</a> and save the zip file to your "whiteboard" folder</p>
+<p> Next you will need to unzip the downloaded file. If you are using a Windows machine please double click ngrok.zip. To do this on Linux or OSX please run the following command in terminal:
+    <code> unzip /path/to/ngrok.zip</code>
+<p>In order to then create a public HTTPS URL please run the following command <code>ngrok http 3000</code></p>
+<p>If you have the project running in another terminal window i.e. by running the <code>node www</code> command, your configuration of the whiteboard project will then be accessible on a URL similar to the following example: <code>https://08ff56sd.ngrok.io</code></p>
+
+<hr>
+
+<h1>
+<a id="pushingToHeroku" class="anchor" href="#pushingToHeroku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pushing to Heroku</h1>
+
+<p> Once you are happy with your whiteboard configuration it may be useful to push it to Heroku to make it easier to access. By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.</p>
+
+<p> To do this you will need to create a free Heroku account. This can be done <a href = "https://signup.heroku.com/dc">here</a>. </p>
+
+<p> Once your free account is set up you will be able to push your code to a personal app by following the instructions found <a href = "https://devcenter.heroku.com/articles/git">here</a>. You will then be able to access your site at <br> <code>https://YOURDOMAINNAME.herokuapp.com</code></p>
