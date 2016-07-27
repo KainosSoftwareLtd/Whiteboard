@@ -22,7 +22,9 @@ var easyrtc = require("easyrtc");      // EasyRTC external module
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+var porthttps = normalizePort = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
+app.set('porthttps', porthttps);
 
 /**
  * Create HTTP server.

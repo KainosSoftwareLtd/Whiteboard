@@ -1,11 +1,11 @@
 {
-	"form": 
-	{
-         "ident": "**ADD IDENTITY HERE**",
-         "secret": "**ADD SECRET KEY HERE**",
-         "domain": "**ADD DOMAIN HERE**",
-         "application": "**ADD APPLICATION HERE**",
-         "room": "**ADD ROOM HERE**",
+   "form": 
+   {
+         "ident": ***REMOVED***
+         "secret": ***REMOVED***
+         "domain": ***REMOVED***
+         "application": "default",
+         "room": "default",
          "secure": 1
       },
       "json": true
