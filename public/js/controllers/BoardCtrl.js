@@ -98,7 +98,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
             list.push(easyrtcid);
         }
         //
-        // Connect in reverse order. Latter arriving people are more likely to have
+        // Connect in reverse order. Later arriving people are more likely to have
         // empty slots.
         //
         function establishConnection(position) {
@@ -143,11 +143,15 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
     function initCanvas() {
         var canvas = this.__canvas = new fabric.Canvas('c', {
             width: 1100,
-            height: 600
+            height: 600,
         });
 
         canvas.freeDrawingBrush.width = $scope.brushSize;
         canvas.freeDrawingBrush.color = $scope.brushColor;
+        canvas.isDrawingMode = true;
+        canvas.on('mouse:up', function() {
+                            sendData();
+                        });
 
         canvas.on('object:modified', function() {
             sendData();
@@ -172,6 +176,15 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
             console.log(e);
         }
     }
+
+    $scope.usePencilTool = function() {
+                removeCanvasEventListners();
+                makeObjectsOnCanvasSelectable(false);
+                canvas.isDrawingMode = true;
+                canvas.on('mouse:up', function() {
+                    sendData();
+                });
+            };
 
     function removeCanvasEventListners() {
         canvas.off('mouse:up');
@@ -215,15 +228,6 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
     $scope.clearBoard = function() {
         canvas.clear();
         sendData();
-    };
-
-    $scope.usePencilTool = function() {
-        removeCanvasEventListners();
-        makeObjectsOnCanvasSelectable(false);
-        canvas.isDrawingMode = true;
-        canvas.on('mouse:up', function() {
-            sendData();
-        });
     };
 
     $scope.useRectangleTool = function() {
