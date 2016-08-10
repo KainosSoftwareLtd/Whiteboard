@@ -2,7 +2,9 @@
 
 # Whiteboard
 
-The goal of Kainos Whiteboard is to allow people to collaborate on projects through its whiteboard functionality and use of real time communication. Using webRTC it allows for in-browser video conferencing and its whiteboard feature allows any participant in the call to effectively plan or communicate their ideas through drawing sketches and diagrams that can be moved, rotated and deleted as needed. It aims to improve the way teams work together across multiple geographical locations.
+Whiteboard was initially created by Michael Kemp, a Kainos Software Engineer, for his final year university project. To try out a configuration of the Whiteboard project please visit: https://kainoswhiteboard.herokuapp.com/ 
+
+The goal of Whiteboard is to allow people to collaborate on projects through its whiteboard functionality and use of real time communication. Using webRTC it allows for in-browser video conferencing and its whiteboard feature allows any participant in the call to effectively plan or communicate their ideas through drawing sketches and diagrams that can be moved, rotated and deleted as needed. It aims to improve the way teams work together across multiple geographical locations.
 
 ![alt text](Canvas_Functionality.gif)
 
@@ -37,7 +39,7 @@ Installation instructions for this can be found here: https://www.versioneye.com
 #Configuration
 
 ##XirSys
-You will also need to create a XirSys account. This can be done via their website:
+This project requires you to create a XirSys account in order to allow you to communicate with other computers on internal networks. XirSys provides the STUN and TURN servers needed to make this possible. An account can be created via their website:
 https://xirsys.com/ 
 
 Once you have created an account you will need to enter the following details to the “user.json” file in the format outlined below:
@@ -58,7 +60,7 @@ Once you have created an account you will need to enter the following details to
 ```
 
 ##SMTP
-In order to make use of the invite email functionality you will also need to add an SMTP server.
+This project also provides invite functionality by allowing you to invite contacts to a meeting room via email. In order to avail of this functionality you will need to add an SMTP (Simple Mail Transfer Protocol) server in order to facilitate the email transfer.
 A gmail account provides an SMTP server. This will need to be added to the invite.js file (whiteboard/routes/invite.js) as shown below:
 ```javascript
 var transporter = nodemailer.createTransport('smtps://<YourDomain>%40gmail.com:<YourPassword>@smtp.gmail.com');
@@ -137,9 +139,11 @@ From here the user will be able to enter a meeting room pin or they can directly
 NOTE: Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication. If this is the case please follow the instructions below to utilise ngrok in order to bypass this issue.
 
 ##Ngrok
-Ngrok enables you to "Instantly create a public HTTPS URL for a web site running locally on your development machine."
+This project makes use of webRTC, allowing a camera and microphone to be accessed through your browser. Some browsers will therefore want to ensure that information is handled securely. 
 
-This will allow to bypass security issues with modern versions of browsers such as Google Chrome by allowing you to connect to a HTTPS URL. To begin please download ngrok from the site found [here](https://ngrok.com/) and save the zip file to your "whiteboard" folder
+Ngrok helps provide this security by enabling you to "instantly create a public HTTPS URL for a web site running locally on your development machine."
+
+This will allow you to bypass security issues with modern versions of browsers such as Google Chrome by allowing you to connect to a HTTPS URL, which is viewed as secure. To begin please download ngrok from the site found [here](https://ngrok.com/) and save the zip file to your "whiteboard" folder
 
 Next you will need to unzip the downloaded file. If you are using a Windows machine please double click ngrok.zip. To do this on Linux or OSX please run the following command in terminal:
 `unzip /path/to/ngrok.zip`
