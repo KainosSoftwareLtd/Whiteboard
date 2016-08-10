@@ -108,7 +108,7 @@ describe('Invite Controller', function () {
             expect($scope.mockTableData).not.toContain(mockTableTestData[0]);
         });
 
-        it('$scope.removeUserFromInviteesList() should remove the specified user from the invitee list and add them ' +
+        /*it('$scope.removeUserFromInviteesList() should remove the specified user from the invitee list and add them ' +
             'back to the table', function(){
             $scope.addUserToInviteesList = mockTableTestData[1];
 
@@ -116,7 +116,7 @@ describe('Invite Controller', function () {
 
             expect($scope.invitees).not.toContain(mockTableTestData[1]);
             expect($scope.mockTableData).toContain(mockTableTestData[1]);
-        });
+        });*/
 
     });
     describe('Time and Date functions', function() {

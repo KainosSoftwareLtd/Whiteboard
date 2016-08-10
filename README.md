@@ -152,7 +152,7 @@ Currently displaying people that are available to invite is handled as part of I
 ```javascript
 {
    id: 1,
-   userImage: ***REMOVED***
+   userImage: 'http://placehold.it/150x150',
    name: Test Name,
    department: 'Test Department',
    email: 'testdepartment@kainos.com'
@@ -162,7 +162,7 @@ In order to add people to invite for this meeting their details will need to be 
 ```javascript
 {
     id: 1,
-    userImage: ***REMOVED***
+    userImage: 'http://placehold.it/150x150',
     name: Test Name,
     department: 'Test Department',
     email: 'testdepartment@kainos.com'
@@ -170,7 +170,7 @@ In order to add people to invite for this meeting their details will need to be 
 
 {
     id: 2,
-    userImage: ***REMOVED***
+    userImage: 'http://placehold.it/150x150',
     name: Test Name2,
     department: 'Test Department2',
     email: 'testdepartment2@kainos.com'
@@ -186,7 +186,7 @@ The information must be entered in the following format and must match the infor
 [
  {
     id: 1,
-    userImage: ***REMOVED***
+    userImage: 'http://placehold.it/150x150',
     name: Test Name,
     department: 'Test Department',
     email: 'testdepartment@kainos.com'
@@ -194,7 +194,7 @@ The information must be entered in the following format and must match the infor
 
  {
     id: 2,
-    userImage: ***REMOVED***
+    userImage: 'http://placehold.it/150x150',
     name: Test Name2,
     department: 'Test Department2',
     email: 'testdepartment2@kainos.com'

@@ -1,9 +1,9 @@
 {
    "form": 
    {
-         "ident": ***REMOVED***
-         "secret": ***REMOVED***
-         "domain": ***REMOVED***
+         "ident": "herokutest",
+         "secret": "ac5f645c-4371-11e6-a290-939a3e9561d1",
+         "domain": "www.kainoswhiteboard.herokuapps.com",
          "application": "default",
          "room": "default",
          "secure": 1

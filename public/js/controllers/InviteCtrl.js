@@ -10,7 +10,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
         [
             {
                 id: 1,
-                userImage: ***REMOVED***
+                userImage: 'http://placehold.it/150x150',
                 name: '**ADD CONTACT HERE**',
                 department: '**ADD CONTATCT HERE**',
                 email: '**ADD CONTACT HERE**'
@@ -18,7 +18,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
             {
                 id: 2,
-                userImage: ***REMOVED***
+                userImage: 'http://placehold.it/150x150',
                 name: '**ADD CONTACT HERE**',
                 department: '**ADD CONTATCT HERE**',
                 email: '**ADD CONTACT HERE**'
@@ -26,7 +26,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
             {
                 id: 3,
-                userImage: ***REMOVED***
+                userImage: 'http://placehold.it/150x150',
                 name: '**ADD CONTACT HERE**',
                 department: '**ADD CONTATCT HERE**',
                 email: '**ADD CONTACT HERE**'
@@ -34,7 +34,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
             {
                 id: 4,
-                userImage: ***REMOVED***
+                userImage: 'http://placehold.it/150x150',
                 name: '**ADD CONTACT HERE**',
                 department: '**ADD CONTATCT HERE**',
                 email: '**ADD CONTACT HERE**'
@@ -42,7 +42,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
             {
                 id: 5,
-                userImage: ***REMOVED***
+                userImage: 'http://placehold.it/150x150',
                 name: '**ADD CONTACT HERE**',
                 department: '**ADD CONTATCT HERE**',
                 email: '**ADD CONTACT HERE**'
@@ -50,7 +50,7 @@ angular.module('InviteCtrl', ['ui.bootstrap']).controller('InviteCtrl', ['$scope
 
             {
                 id: 6,
-                userImage: ***REMOVED***
+                userImage: 'http://placehold.it/150x150',
                 name: '**ADD CONTACT HERE**',
                 department: '**ADD CONTATCT HERE**',
                 email: '**ADD CONTACT HERE**'
