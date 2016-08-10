@@ -27,9 +27,13 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         var connectFailure = function(errorCode, errText) {
             console.log('connection error ' + errText);
 
-            if(errorCode === 'MEDIA_ERR'){
+            if(errText === 'Failed to get access to local media. Error code was PermissionDeniedError.') {
+                addAlert('danger', 'Requires https connection - Please see documentation (README)');
+            }
+            else if(errorCode === 'MEDIA_ERR'){
                 addAlert('danger', 'No camera detected! Connect a camera and try again');
-            } else {
+            }
+            else {
                 addAlert('danger', 'Error ' + errText);
             }
 
@@ -64,7 +68,7 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
 
         for(var i = 1; i < 4; i++) {
             var thisVideo = videoElements.find('video')[i];
-            sendData();
+            $scope.sendDataUponJoining();
 
             if(thisVideo.id === "") {
                 thisVideo.id = callerEasyrtcid;
@@ -160,7 +164,9 @@ angular.module('BoardCtrl', ['ui.bootstrap']).controller('BoardCtrl', ['$scope',
         return canvas;
     }
 
-
+    $scope.sendDataUponJoining = function(){
+        sendData();
+    };
 
     function sendData() {
         var data = JSON.stringify(canvas.toDatalessJSON());

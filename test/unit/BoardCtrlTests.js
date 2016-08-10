@@ -29,6 +29,14 @@ describe('Board Controller', function() {
         expect(easyrtc.initMediaSource).toHaveBeenCalled();
     });
 
+    it('sendDataUponJoining should be called alongside setStreamAcceptor', function(){
+        expect(easyrtc.setStreamAcceptor).toHaveBeenCalled();
+        spyOn(easyrtc, 'sendDataWS');
+        $scope.sendDataUponJoining();
+        expect(easyrtc.sendDataWS).toHaveBeenCalled();
+
+    });
+
     it('$scope.onColorChange() should set the brush colour to the current colour pickers colour', function(){
         $scope.brushColor = '#66ff99';
         $scope.onColorChange();
