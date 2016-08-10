@@ -65,7 +65,7 @@
 <h3>
 <a id="xirsys" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>XirSys</h3>
 
-<p>You will also need to create a XirSys account. This can be done via their website:
+<p>This project requires you to create a XirSys account in order to allow you to communicate with other computers on internal networks. XirSys provides the STUN and TURN servers needed to make this possible. An account can be created via their website:
 <a href="https://xirsys.com/">https://xirsys.com/</a> </p>
 
 <p>Once you have created an account you will need to enter the following details to the “user.json” file in the format outlined below:</p>
@@ -84,6 +84,100 @@
 }
 </pre></div>
 
+<p> <b>NOTE:</b> This project also provides functionality whereby an email can be sent to notify someone of a planned online meeting however for now this has been disabled for the initial configuration of the project. If you would like to enable this feature please see the <a href="#inviteFunctionality">Invite Functionality</a> section below. </p>
+
+<hr>
+
+<h1>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h1>
+
+<p>To run associated tests Karma must be installed. To do this follow the instructions on the <a href="https://karma-runner.github.io/1.0/index.html">Karma website.</a> </p>
+
+<p>Run karma start <code>karma.conf.js</code> from the whiteboard folder in terminal. Test output will be displayed in the terminal.</p>
+
+<p><b>NOTE:</b> If you wish to enable the invite functionality then alterations to some tests will need to be made. Please see the <a href = "#testingInviteFunctionality">Testing Invite Functionality</a> section below for more details.
+</p>
+
+
+<hr>
+
+<h1>
+<a id="connectingAnotherComputerToLocalHost" class="anchor" href="#connectingAnotherComputerToLocalHost" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connecting Another Computer To LocalHost</h1>
+
+<p>Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:<br>
+<p><code>http://IPADDRESS:3000</code></p>
+
+<p> From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:</p>
+<p><code>http://IPADDRESS:3000/board/ROOMPIN</code></p>
+
+<p> <b>NOTE:</b> Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication. If this is the case please follow the instructions below to utilise ngrok in order to bypass this issue.</p>
+
+<h3>
+<a id="ngrok" class="anchor" href="#ngrok" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ngrok</h3>
+<p>This project makes use of webRTC, allowing a camera and microphone to be accessed through your browser. Some browsers will therefore want to ensure that information is handled securely.</p>
+<p>Ngrok enables you to "Instantly create a public HTTPS URL for a web site running locally on your development machine."</p>
+<p>This will allow to bypass security issues with modern versions of browsers such as Google Chrome by allowing you to connect to a HTTPS URL. To begin please download ngrok from the site found <a href="https://ngrok.com/">here</a> and save the zip file to your "whiteboard" folder</p>
+<p> Next you will need to unzip the downloaded file. If you are using a Windows machine please double click ngrok.zip. To do this on Linux or OSX please run the following command in terminal:
+    <code> unzip /path/to/ngrok.zip</code>
+<p>In order to then create a public HTTPS URL please run the following command <code>./ngrok http 3000</code></p>
+<p>If you have the project running in another terminal window i.e. by running the <code>node www</code> command, your configuration of the whiteboard project will then be accessible on a URL similar to the following example: <code>https://08ff56sd.ngrok.io</code></p>
+
+<img src="Using_ngrok.gif" style="width:600px;height:400px">
+
+<hr>
+
+<h1>
+<a id="pushingToHeroku" class="anchor" href="#pushingToHeroku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pushing to Heroku</h1>
+
+<p> Once you are happy with your whiteboard configuration it may be useful to push it to Heroku to make it easier to access. By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.</p>
+
+<p> To do this you will need to create a free Heroku account. This can be done <a href = "https://signup.heroku.com/dc">here</a>. </p>
+
+<p> Once your free account is set up you will be able to push your code to a personal app by following the instructions found <a href = "https://devcenter.heroku.com/articles/git">here</a>. You will then be able to access your site at <br> <code>https://YOURDOMAINNAME.herokuapp.com</code></p>
+
+
+
+
+<h1>
+<a id="inviteFunctionality" class="anchor" href="#inviteFunctionality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Invite Functionality</h1>
+
+<p>Currently access to the invite functionality has been disabled. In order to enable access to the "Create New Meeting" page you will need to delete the comments surrounding the "Create New Meeting" button in index.hbs (Whiteboard/views/index.hbs).</p>
+
+<p>To do this, please navigate to index.hbs and identify the following code:</p>
+
+
+
+<div class="highlight highlight-source-js"><pre>               
+<span class="pl-c">&lt;!--</span><span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>row<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text-center col-xs-12<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>h3<span class="pl-k">&gt;</span>or<span class="pl-k">&lt;</span><span class="pl-k">/</span>h3<span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>br<span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+
+                <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>row<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>col-xs-offset-4<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>button type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> ng<span class="pl-k">-</span>click<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>newMeeting()<span class="pl-pds">"</span></span> <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>btn btn-primary<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>Create <span class="pl-k">new</span> <span class="pl-en">meeting</span><span class="pl-k">&lt;</span><span class="pl-k">/</span>button<span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><span class="pl-c">--&gt;</span></pre></div>
+
+<p>Then delete the comment tags surrounding the code so that it looks like this:</p>
+
+<div class="highlight highlight-source-js"><pre>               <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>row<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text-center col-xs-12<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>h3<span class="pl-k">&gt;</span>or<span class="pl-k">&lt;</span><span class="pl-k">/</span>h3<span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>br<span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+
+                <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>row<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span>div <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>col-xs-offset-4<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>button type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> ng<span class="pl-k">-</span>click<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>newMeeting()<span class="pl-pds">"</span></span> <span class="pl-k">class</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>btn btn-primary<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>Create <span class="pl-k">new</span> <span class="pl-en">meeting</span><span class="pl-k">&lt;</span><span class="pl-k">/</span>button<span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span></pre></div>
+
+<p>This will enable the "Create New Meeting" button on the main page of the project.</p>
+
 <h3>
 <a id="smtp" class="anchor" href="#smtp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SMTP</h3>
 
@@ -99,7 +193,7 @@
 <p>If you wish to add your own SMTP server this must be replaced.</p>
 
 <h3>
-<a id="addingNewContacts" class="anchor" href="#xirsys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding New Contacts</h3>
+<a id="addingNewContacts" class="anchor" href="#addingNewContacts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Adding New Contacts</h3>
 
 <p>Currently displaying people that are available to invite is handled as part of InviteCtrl.js (whiteboard/public/js/controllers/InviteCtrl.js) as shown below:</p>
 
@@ -132,16 +226,8 @@
     }
 </pre></div>
 
-<hr>
-
-<h1>
-<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h1>
-
-<p>To run associated tests Karma must be installed. To do this follow the instructions on the <a href="https://karma-runner.github.io/1.0/index.html">Karma website.</a> </p>
-
-<p>Run karma start <code>karma.conf.js</code> from the whiteboard folder in terminal. Test output will be displayed in the terminal.</p>
-
-<p><b>NOTE:</b> If you have added your own contacts then you will also need to edit InviteCtrlTests.js (whiteboard/test/unit/InviteCtrlTests.js).</p>
+<h3>
+<a id="testingInviteFunctionality" class="anchor" href="#testingInviteFunctionality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing Invite Functionality</h3>
 
 <p>You will need to edit the data stored in the variable "mockTableTestData" by replacing any existing contacts with the contacts you have added. The information must be entered in the following format and must match the information you have added to InviteCtrl.js:</p>
 
@@ -164,38 +250,31 @@
    ]; 
 </pre></div>
 
+<p>You will also need to remove the comment block enclosing one of the tests in InviteCtrlTests.js (Whiteboard/test/unit/InviteCtrlTests.js) To do this please navigate to InviteCtrlTests.js and identify the following code:</p>
 
-<hr>
+<div class="highlight highlight-source-js"><pre>        <span class="pl-c">/*it('$scope.removeUserFromInviteesList() should remove the specified user from the invitee list and add them ' +</span>
+<span class="pl-c">            'back to the table', function(){</span>
+<span class="pl-c">            $scope.addUserToInviteesList = mockTableTestData[1];</span>
+<span class="pl-c"></span>
+<span class="pl-c">            $scope.removeUserFromInviteesList(mockTableTestData[1]);</span>
+<span class="pl-c"></span>
+<span class="pl-c">            expect($scope.invitees).not.toContain(mockTableTestData[1]);</span>
+<span class="pl-c">            expect($scope.mockTableData).toContain(mockTableTestData[1]);</span>
+<span class="pl-c">        });*/</span></pre></div>
 
-<h1>
-<a id="connectingAnotherComputerToLocalHost" class="anchor" href="#connectingAnotherComputerToLocalHost" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Connecting Another Computer To LocalHost</h1>
+<p>Then remove the comment markers so that the code looks like this:</p>
 
-<p>Once you have whiteboard running on your local machine, others will be able to join meetings that you host. To do this they must enter the IP address of your machine into their web browser in the following format:<br>
-<p><code>http://IPADDRESS:3000</code></p>
+<pre>      <span class="pl-en">it</span>(<span class="pl-s"><span class="pl-pds">'</span>$scope.removeUserFromInviteesList() should remove the specified user from the invitee list and add them <span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+            <span class="pl-s"><span class="pl-pds">'</span>back to the table<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(){
+            <span class="pl-smi">$scope</span>.<span class="pl-smi">addUserToInviteesList</span> <span class="pl-k">=</span> mockTableTestData[<span class="pl-c1">1</span>];
 
-<p> From here the user will be able to enter a meeting room pin or they can directly connect to a meeting by entering ammending their browser URL to the following:</p>
-<p><code>http://IPADDRESS:3000/board/ROOMPIN</code></p>
+            <span class="pl-smi">$scope</span>.<span class="pl-en">removeUserFromInviteesList</span>(mockTableTestData[<span class="pl-c1">1</span>]);
 
-<p> <b>NOTE:</b> Some browsers (such as the latest version of Google Chrome) may prevent access to a computer's camera and microphone and thus prevent real-time communication. If this is the case please follow the instructions below to utilise ngrok in order to bypass this issue.</p>
+            <span class="pl-en">expect</span>(<span class="pl-smi">$scope</span>.<span class="pl-smi">invitees</span>).<span class="pl-smi">not</span>.<span class="pl-en">toContain</span>(mockTableTestData[<span class="pl-c1">1</span>]);
+            <span class="pl-en">expect</span>(<span class="pl-smi">$scope</span>.<span class="pl-smi">mockTableData</span>).<span class="pl-en">toContain</span>(mockTableTestData[<span class="pl-c1">1</span>]);
+        });</pre>
 
-<h3>
-<a id="ngrok" class="anchor" href="#ngrok" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ngrok</h3>
-<p>Ngrok enables you to "Instantly create a public HTTPS URL for a web site running locally on your development machine."</p>
-<p>This will allow to bypass security issues with modern versions of browsers such as Google Chrome by allowing you to connect to a HTTPS URL. To begin please download ngrok from the site found <a href="https://ngrok.com/">here</a> and save the zip file to your "whiteboard" folder</p>
-<p> Next you will need to unzip the downloaded file. If you are using a Windows machine please double click ngrok.zip. To do this on Linux or OSX please run the following command in terminal:
-    <code> unzip /path/to/ngrok.zip</code>
-<p>In order to then create a public HTTPS URL please run the following command <code>./ngrok http 3000</code></p>
-<p>If you have the project running in another terminal window i.e. by running the <code>node www</code> command, your configuration of the whiteboard project will then be accessible on a URL similar to the following example: <code>https://08ff56sd.ngrok.io</code></p>
+<p>This will enable another test in the suite and provide greater test coverage for the project's invite functionality.</p>
 
-<img src="Using_ngrok.gif" style="width:600px;height:400px">
 
-<hr>
 
-<h1>
-<a id="pushingToHeroku" class="anchor" href="#pushingToHeroku" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pushing to Heroku</h1>
-
-<p> Once you are happy with your whiteboard configuration it may be useful to push it to Heroku to make it easier to access. By pushing your configuration to Heroku you will be able to access your specific Whiteboard setup from any device that is connected to the internet.</p>
-
-<p> To do this you will need to create a free Heroku account. This can be done <a href = "https://signup.heroku.com/dc">here</a>. </p>
-
-<p> Once your free account is set up you will be able to push your code to a personal app by following the instructions found <a href = "https://devcenter.heroku.com/articles/git">here</a>. You will then be able to access your site at <br> <code>https://YOURDOMAINNAME.herokuapp.com</code></p>
